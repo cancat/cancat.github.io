@@ -1,3 +1,18 @@
+/* Enhance Scrollbar */
+::-webkit-scrollbar {  
+    width: 8px;
+    -webkit-appearance: none;  
+}  
+
+::-webkit-scrollbar-thumb {  
+    border-radius: 4px;
+    background: rgba(0,0,0,0.4);      
+}
+
+::-webkit-scrollbar-thumb:hover {  
+    background: rgba(0,0,0,0.5);
+}  
+
 /* Fix user-agent */
 
 * {
@@ -10,7 +25,7 @@ html {
 }
 
 html, input {
-  font-family: tahoma,arial,'Hiragino Sans GB',\5b8b\4f53,sans-serif;
+  font-family: tahoma,arial,'Hiragino sans GB',\5b8b\4f53,sans-serif;
 }
 
 html, body {
@@ -106,7 +121,8 @@ ul {
 
 .chatArea {
   height: 100%;
-  padding-bottom: 60px;
+  padding-bottom: 65px;
+  padding-top: 2px;
 }
 
 .messages {
@@ -130,14 +146,20 @@ ul {
 
 /* Input */
 
-.inputMessage {
-  border: 10px solid #000;
-  bottom: 0;
-  height: 60px;
-  left: 0;
-  outline: none;
-  padding-left: 10px;
+.inputMW {
   position: absolute;
+  left: 0;
+  bottom: 0;
   right: 0;
+  padding: 10px 10px;
+  background: #efefef;
+  box-shadow: 0 -1px 6px rgba(0,0,0,.2);
+}
+
+.inputMessage {
+  padding-left: 10px;
+  height: 40px;
   width: 100%;
+  border: none;
+  outline: none;
 }
