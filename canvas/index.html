@@ -1,0 +1,110 @@
+<html lang="zh">
+	<head>
+		<meta charset="utf-8" />
+		<title>Canvas-Filter</title>
+		<style type="text/css">
+			html, body {
+				overflow: hidden;
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				padding: 0;
+				border: 0;
+			}
+			label {
+				vertical-align: super;
+			}
+		</style>
+		<script type="text/javascript">
+			function init(canvas,w,h) {
+				canvas.width = w;
+				canvas.height = h;
+				var ctx = canvas.getContext('2d');
+				ctx.drawImage(ori_img,0,0);
+			}
+
+			var Filters = {};
+
+			Filters.getCanvas = function(w,h) {
+			    var c = document.createElement('canvas');
+			    c.width = w;
+			    c.height = h;
+			    return c;
+			};
+
+			Filters.filter = function(filter, img, args) {
+				var c = this.getCanvas(img.width, img.height);
+				var ctx = c.getContext('2d');
+				ctx.drawImage(img,0,0);
+				var argus = imgData = ctx.getImageData(0,0,c.width,c.height);
+				if (!!args) {
+					argus = [imgData, args]
+				}
+				var filtered = !!filter?filter.apply(null,argus):imgData;
+				ctx.putImageData(filtered,0,0);
+				return c;
+			}
+
+			var grayscale = function(pixels) {
+			    var d = pixels.data;
+			    for (var i=0; i<d.length; i+=4) {
+			        var r = d[i];
+			        var g = d[i+1];
+			        var b = d[i+2];
+			        // CIE luminance for the RGB
+			        // The human eye is bad at seeing red and blue, so we de-emphasize them.
+			        var v = 0.2126*r + 0.7152*g + 0.0722*b;
+			        d[i] = d[i+1] = d[i+2] = v
+			   }
+			   return pixels;
+			};
+
+			var multiply = function(pixels,color) {
+				var d = pixels.data;
+				for (var i=0; i<d.length; i+=4) {
+					d[i] *= color[0] / 255;
+					d[i+1] *= color[1] / 255;
+					d[i+2] *= color[2] / 255;
+				}
+				return pixels;
+			}
+
+			var toRgb = function(hex) {
+				var r = parseInt(hex.substr(1,2),16);
+				var g = parseInt(hex.substr(3,2),16);
+				var b = parseInt(hex.substr(5,2),16);
+				return [r, g, b];
+			}
+			var ori_img = new Image();
+			ori_img.src = 'img/demo.png';
+			ori_img.onload = function () {
+				var canvas = document.getElementById('mainCanvas');
+				var ctx = canvas.getContext('2d');
+				var colorE = document.getElementById('multiply-color');
+				var multi_btn = document.getElementById('multiply-btn');
+				var reset_btn = document.getElementById('reset-btn');
+				multi_btn.onclick = function (e) {
+					e.preventDefault();
+					var color = toRgb(colorE.value);
+					var img = Filters.filter(multiply, ori_img, color);
+					ctx.drawImage(img,0,0)
+				}
+				reset_btn.onclick = function(e) {
+					e.preventDefault();
+					canvas.width = canvas.width;
+					ctx.drawImage(ori_img,0,0);
+				}
+				init(canvas,ori_img.width,ori_img.height);
+			}
+
+		</script>
+	</head>
+	<body>
+		<canvas id="mainCanvas" width="100" height="100"></canvas>
+		<label>
+			<input type="color" id="multiply-color">
+	    	<button id="multiply-btn">叠加</button>
+	    	<button id="reset-btn">复位</button>
+	    </label>
+	</body>
+</html>
