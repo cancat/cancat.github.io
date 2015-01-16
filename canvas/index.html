@@ -15,14 +15,9 @@
 				vertical-align: super;
 			}
 		</style>
+		<script src="js/ImageManager.js"></script>
+		<script src="js/Scene.js"></script>
 		<script type="text/javascript">
-			function init(canvas,w,h) {
-				canvas.width = w;
-				canvas.height = h;
-				var ctx = canvas.getContext('2d');
-				ctx.drawImage(ori_img,0,0);
-			}
-
 			var Filters = {};
 
 			Filters.getCanvas = function(w,h) {
@@ -75,33 +70,41 @@
 				var b = parseInt(hex.substr(5,2),16);
 				return [r, g, b];
 			}
-			var ori_img = new Image();
-			ori_img.src = 'img/test.png';
-			ori_img.onload = function () {
-				var canvas = document.getElementById('mainCanvas');
-				var ctx = canvas.getContext('2d');
-				var colorE = document.getElementById('multiply-color');
-				var multi_btn = document.getElementById('multiply-btn');
-				var reset_btn = document.getElementById('reset-btn');
-				multi_btn.onclick = function (e) {
-					e.preventDefault();
-					var color = toRgb(colorE.value);
-					var img = Filters.filter(multiply, ori_img, color);
-					ctx.drawImage(img,0,0)
-				}
-				reset_btn.onclick = function(e) {
-					e.preventDefault();
-					canvas.width = canvas.width;
-					ctx.drawImage(ori_img,0,0);
-				}
-				init(canvas,ori_img.width,ori_img.height);
-			}
 
+			
+			var imageManager = new ImageManager();
+			imageManager.load({
+				'layer-0': 'img/demo.png',
+				'layer-1': 'img/test.png'
+			}, function () {
+				var canvas = document.getElementById('mainCanvas');
+				var scene = new Scene(canvas, imageManager);
+				scene.draw(canvas);
+				var multiply_btn = document.getElementById('multiply-btn');
+				var reset_btn = document.getElementById('reset-btn');
+				var multiply_layer = document.getElementById('multiply-layer');
+				var color_picker = document.getElementById('multiply-color');
+				multiply_btn.onclick = function (e) {
+					e.preventDefault();
+					var color = toRgb(color_picker.value);
+					var layer = multiply_layer.value;
+					scene.filterLayer(color, layer);
+				}
+				reset_btn.onclick = function (e) {
+					e.preventDefault();
+					var layer = multiply_layer.value;
+					scene.resetLayer(layer);
+				}
+			})
 		</script>
 	</head>
 	<body>
 		<canvas id="mainCanvas" width="100" height="100"></canvas>
 		<label>
+			<select id="multiply-layer">
+				<option value ="0">图层0</option>
+				<option value ="1">图层1</option>
+			</select>
 			<input type="color" id="multiply-color">
 	    	<button id="multiply-btn">叠加</button>
 	    	<button id="reset-btn">复位</button>
