@@ -1,6 +1,7 @@
 function Scene(canvas, imgManager) {
 	this.layer = [];
 	this.oriLayerData = [];
+	this.currentLayer = 0;
 	this.canvas = canvas;
 	for (var i = 0; i < imgManager.getLen(); i++) {
 		var tCanvas = document.createElement('canvas');
@@ -50,4 +51,22 @@ p.resetLayer = function (index) {
 	var imageData = this.oriLayerData[index];
 	ctx.putImageData(imageData, 0, 0);
 	this.draw();
+}
+
+p.checkLayer = function (x, y) {
+	if (x < 0 || y < 0 || x > this.SceneW - 1 || y > this.SceneH - 1)
+		return false;
+	var row = y;
+	var col = x;
+	for (var i = this.layer.length; i > 0; i--) {
+		var data = this.oriLayerData[i - 1].data;
+		var alpha = data[(row * this.SceneW + col) * 4 + 3];
+		if (alpha == 255)
+			return i - 1;
+	}
+	return false;
+}
+
+p.setCurrentL = function (i) {
+	this.currentLayer = i;
 }

@@ -3,16 +3,13 @@
 		<meta charset="utf-8" />
 		<title>Canvas-Filter</title>
 		<style type="text/css">
-			html, body {
-				overflow: hidden;
-				width: 100%;
-				height: 100%;
-				margin: 0;
-				padding: 0;
-				border: 0;
-			}
-			label {
-				vertical-align: super;
+			#layer-pointer {
+				display: none;
+				position: absolute;
+				padding: 2px 4px;
+				background: #f7f7f7;
+				border: 1px solid #333;
+				font-size: 12px;
 			}
 		</style>
 		<script src="js/ImageManager.js"></script>
@@ -82,32 +79,59 @@
 				scene.draw(canvas);
 				var multiply_btn = document.getElementById('multiply-btn');
 				var reset_btn = document.getElementById('reset-btn');
-				var multiply_layer = document.getElementById('multiply-layer');
 				var color_picker = document.getElementById('multiply-color');
+				var current_layer = document.getElementById('current-layer');
+				var layer_pointer = document.getElementById('layer-pointer');
 				multiply_btn.onclick = function (e) {
 					e.preventDefault();
 					var color = toRgb(color_picker.value);
-					var layer = multiply_layer.value;
+					var layer = scene.currentLayer;
 					scene.filterLayer(color, layer);
 				}
 				reset_btn.onclick = function (e) {
 					e.preventDefault();
-					var layer = multiply_layer.value;
+					var layer = scene.currentLayer;
 					scene.resetLayer(layer);
+				}
+				canvas.onmouseenter = function (e) {
+					e.preventDefault();
+					canvas.style.cursor = 'pointer';
+					document.getElementById('layer-pointer').style.display = 'inline';
+				}
+				canvas.onmouseleave = function (e) {
+					e.preventDefault();
+					canvas.style.cursor = 'default';
+					document.getElementById('layer-pointer').style.display = 'none';
+				}
+				canvas.onmousemove = function (e) {
+					e.preventDefault();
+					var x = e.pageX - canvas.offsetLeft;
+					var y = e.pageY - canvas.offsetTop;
+					var layer = scene.checkLayer(x, y);
+					layer_pointer.innerText = '图层' + layer;
+					layer_pointer.style.left = x + 20;
+					layer_pointer.style.top = y + 8;
+				}
+				canvas.onclick = function (e) {
+					e.preventDefault();
+					var x = e.pageX - canvas.offsetLeft;
+					var y = e.pageY - canvas.offsetTop;
+					var layer = scene.checkLayer(x, y);
+					scene.setCurrentL(layer);
+					current_layer.innerText = layer;
 				}
 			})
 		</script>
 	</head>
 	<body>
 		<canvas id="mainCanvas" width="100" height="100"></canvas>
-		<label>
-			<select id="multiply-layer">
-				<option value ="0">图层0</option>
-				<option value ="1">图层1</option>
-			</select>
+		<br>
+		<div id="tool-box">
+			<small>当前所选图层为：<b id="current-layer">0</b></small>
 			<input type="color" id="multiply-color">
 	    	<button id="multiply-btn">叠加</button>
 	    	<button id="reset-btn">复位</button>
-	    </label>
+	    	<span id="layer-pointer"></span>
+	    </div>
 	</body>
 </html>
