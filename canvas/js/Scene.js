@@ -3,6 +3,7 @@ function Scene(canvas, imgManager) {
 	this.oriLayerData = [];
 	this.currentLayer = 0;
 	this.canvas = canvas;
+	this.imgManager = imgManager;
 	for (var i = 0; i < imgManager.getLen(); i++) {
 		var tCanvas = document.createElement('canvas');
 		var tCtx = tCanvas.getContext('2d');
@@ -34,6 +35,9 @@ p.draw = function () {
 p.filterLayer = function (color, index) {
 	var canvas = this.layer[index];
 	var ctx = canvas.getContext('2d');
+	var image = this.imgManager.get('layer-' + index);
+	canvas.width = canvas.width;
+	ctx.drawImage(image, 0, 0);
 	var imageData = ctx.getImageData(0, 0, this.SceneW, this.SceneH);
 	var d = imageData.data;
 	for (var i = 0; i < d.length; i+=4) {
