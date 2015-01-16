@@ -11,6 +11,9 @@
 				border: 1px solid #333;
 				font-size: 12px;
 			}
+			#current-layer {
+				color: rgb(200, 0, 0);
+			}
 		</style>
 		<script src="js/ImageManager.js"></script>
 		<script src="js/Scene.js"></script>
@@ -71,11 +74,13 @@
 			
 			var imageManager = new ImageManager();
 			imageManager.load({
-				'layer-0': 'img/demo.png',
-				'layer-1': 'img/test.png'
+				'demo': 'img/demo.png',
+				'test': 'img/test.png'
 			}, function () {
+				var srcList = [imageManager.get('demo'), imageManager.get('test')];
+				var currentLayer = 0;
 				var canvas = document.getElementById('mainCanvas');
-				var scene = new Scene(canvas, imageManager);
+				var scene = new Scene(canvas, srcList);
 				scene.draw(canvas);
 				var multiply_btn = document.getElementById('multiply-btn');
 				var reset_btn = document.getElementById('reset-btn');
@@ -85,13 +90,11 @@
 				multiply_btn.onclick = function (e) {
 					e.preventDefault();
 					var color = toRgb(color_picker.value);
-					var layer = scene.currentLayer;
-					scene.filterLayer(color, layer);
+					scene.filterLayer(color, currentLayer);
 				}
 				reset_btn.onclick = function (e) {
 					e.preventDefault();
-					var layer = scene.currentLayer;
-					scene.resetLayer(layer);
+					scene.resetLayer(currentLayer);
 				}
 				canvas.onmouseenter = function (e) {
 					e.preventDefault();
@@ -116,9 +119,8 @@
 					e.preventDefault();
 					var x = e.pageX - canvas.offsetLeft;
 					var y = e.pageY - canvas.offsetTop;
-					var layer = scene.checkLayer(x, y);
-					scene.setCurrentL(layer);
-					current_layer.innerText = layer;
+					currentLayer = scene.checkLayer(x, y);
+					current_layer.innerText = currentLayer;
 				}
 			})
 		</script>
