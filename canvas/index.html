@@ -104,9 +104,10 @@
 				}
 				canvas.onclick = function (e) {
 					e.preventDefault();
-					var x = e.pageX - canvas.offsetLeft;
-					var y = e.pageY - canvas.offsetTop;
-					scene.setCurLayer(scene.checkLayer(x, y));
+					var x = e.offsetX;
+					var y = e.offsetY;
+					var layer = scene.checkLayer(x, y);
+					scene.setCurLayer(layer);
 					current_layer.innerText = scene.imgList[scene.curLayer].label;
 				}
 			})
