@@ -2,19 +2,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>Canvas-Filter</title>
-		<style type="text/css">
-			#layer-pointer {
-				display: none;
-				position: absolute;
-				padding: 2px 4px;
-				background: #f7f7f7;
-				border: 1px solid #333;
-				font-size: 12px;
-			}
-			#current-layer {
-				color: rgb(200, 0, 0);
-			}
-		</style>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<script src="js/ImageManager.js"></script>
 		<script src="js/Scene.js"></script>
 		<script type="text/javascript">
@@ -70,9 +58,9 @@
 				var b = parseInt(hex.substr(5,2),16);
 				return [r, g, b];
 			}
-
 			
 			var imageManager = new ImageManager();
+			
 			imageManager.load({
 				'demo': 'img/demo.png',
 				'test': 'img/test.png'
@@ -107,12 +95,12 @@
 				}
 				canvas.onmousemove = function (e) {
 					e.preventDefault();
-					var x = e.pageX - canvas.offsetLeft;
-					var y = e.pageY - canvas.offsetTop;
+					var x = e.offsetX;
+					var y = e.offsetY;
 					var layer = scene.checkLayer(x, y);
 					layer_pointer.innerText = scene.imgList[layer].label;
-					layer_pointer.style.left = x + 20;
-					layer_pointer.style.top = y + 8;
+					layer_pointer.style.left = x + 12;
+					layer_pointer.style.top = y;
 				}
 				canvas.onclick = function (e) {
 					e.preventDefault();
@@ -125,14 +113,19 @@
 		</script>
 	</head>
 	<body>
-		<canvas id="mainCanvas" width="100" height="100"></canvas>
-		<br>
-		<div id="tool-box">
-			<small>当前所选图层为：<b id="current-layer">null</b></small>
-			<input type="color" id="multiply-color">
-	    	<button id="multiply-btn">叠加</button>
-	    	<button id="reset-btn">复位</button>
-	    	<span id="layer-pointer"></span>
+		<div class="container clearfix">
+			<div class="scene-border">
+				<div id="canvas-wrapper">
+					<canvas id="mainCanvas" width="100" height="100"></canvas>
+					<span id="layer-pointer"></span>
+				</div>
+			</div>
+			<div id="tool-box">
+				<small>当前所选图层为：<b id="current-layer">null</b></small>
+				<input type="color" id="multiply-color">
+		    	<button id="multiply-btn">叠加</button>
+		    	<button id="reset-btn">复位</button>
+		    </div>
 	    </div>
 	</body>
 </html>
