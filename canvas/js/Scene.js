@@ -3,10 +3,11 @@ function Scene(canvas, imgList) {
 	this.oriLayerData = [];
 	this.canvas = canvas;
 	this.imgList = imgList;
+	this.curLayer = 0;
 	for (var i = 0; i < imgList.length; i++) {
 		var tCanvas = document.createElement('canvas');
 		var tCtx = tCanvas.getContext('2d');
-		var image = imgList[i];
+		var image = imgList[i].data;
 		this.SceneW = tCanvas.width = image.width;
 		this.SceneH = tCanvas.height = image.height;
 		this.layer[i] = tCanvas;
@@ -34,7 +35,7 @@ p.draw = function () {
 p.filterLayer = function (color, index) {
 	var canvas = this.layer[index];
 	var ctx = canvas.getContext('2d');
-	var image = this.imgList[index];
+	var image = this.imgList[index].data;
 	canvas.width = canvas.width;
 	ctx.drawImage(image, 0, 0);
 	var imageData = ctx.getImageData(0, 0, this.SceneW, this.SceneH);
@@ -68,4 +69,8 @@ p.checkLayer = function (x, y) {
 			return i - 1;
 	}
 	return false;
+}
+
+p.setCurLayer = function (i) {
+	this.curLayer = i;
 }

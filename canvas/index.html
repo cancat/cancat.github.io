@@ -77,24 +77,23 @@
 				'demo': 'img/demo.png',
 				'test': 'img/test.png'
 			}, function () {
-				var srcList = [imageManager.get('demo'), imageManager.get('test')];
-				var currentLayer = 0;
+				var srcList = [{label:'水母',data:imageManager.get('demo')}, {label:'小驴',data:imageManager.get('test')}];
 				var canvas = document.getElementById('mainCanvas');
-				var scene = new Scene(canvas, srcList);
-				scene.draw(canvas);
-				var multiply_btn = document.getElementById('multiply-btn');
 				var reset_btn = document.getElementById('reset-btn');
+				var multiply_btn = document.getElementById('multiply-btn');
 				var color_picker = document.getElementById('multiply-color');
 				var current_layer = document.getElementById('current-layer');
 				var layer_pointer = document.getElementById('layer-pointer');
+				var scene = new Scene(canvas, srcList);
+				scene.draw(canvas);
 				multiply_btn.onclick = function (e) {
 					e.preventDefault();
 					var color = toRgb(color_picker.value);
-					scene.filterLayer(color, currentLayer);
+					scene.filterLayer(color, scene.curLayer);
 				}
 				reset_btn.onclick = function (e) {
 					e.preventDefault();
-					scene.resetLayer(currentLayer);
+					scene.resetLayer(scene.curLayer);
 				}
 				canvas.onmouseenter = function (e) {
 					e.preventDefault();
@@ -111,7 +110,7 @@
 					var x = e.pageX - canvas.offsetLeft;
 					var y = e.pageY - canvas.offsetTop;
 					var layer = scene.checkLayer(x, y);
-					layer_pointer.innerText = '图层' + layer;
+					layer_pointer.innerText = scene.imgList[layer].label;
 					layer_pointer.style.left = x + 20;
 					layer_pointer.style.top = y + 8;
 				}
@@ -119,8 +118,8 @@
 					e.preventDefault();
 					var x = e.pageX - canvas.offsetLeft;
 					var y = e.pageY - canvas.offsetTop;
-					currentLayer = scene.checkLayer(x, y);
-					current_layer.innerText = currentLayer;
+					scene.setCurLayer(scene.checkLayer(x, y));
+					current_layer.innerText = scene.imgList[scene.curLayer].label;
 				}
 			})
 		</script>
@@ -129,7 +128,7 @@
 		<canvas id="mainCanvas" width="100" height="100"></canvas>
 		<br>
 		<div id="tool-box">
-			<small>当前所选图层为：<b id="current-layer">0</b></small>
+			<small>当前所选图层为：<b id="current-layer">null</b></small>
 			<input type="color" id="multiply-color">
 	    	<button id="multiply-btn">叠加</button>
 	    	<button id="reset-btn">复位</button>
