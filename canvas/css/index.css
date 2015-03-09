@@ -1,0 +1,86 @@
+body {
+	font-family: tahoma,arial,'Hiragino Sans GB','Microsoft Yahei',sans-serif;
+	background-color: #f7f7f7;
+	margin: 0 0;
+	padding: 0 0;
+}
+header {
+	position: relative;
+	background: #0a3f67;
+	width: 100%;
+	padding: 50px 0;
+}
+.middle-text {
+	width: 50%;
+	margin: 0 auto;
+	color: #fff;
+}
+.middle-text .logo {
+	display: inline-block;
+	width: 40px;
+	height: 42px;
+	background: url(../img/logo.png) no-repeat 0 0;
+	vertical-align: bottom;
+	margin-bottom: 7px;
+	margin-right: 10px;
+}
+.middle-text h1 {
+	font-family: 'microsoft yahei';
+	display: inline-block;
+}
+.middle-text p {
+	margin-left: 360px;
+}
+.banner {
+	height: 200px;
+}
+.banner-0 {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 295px;
+	background: url(../img/youqi.png) no-repeat left bottom;
+	background-size: cover;
+}
+.banner-1 {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	width: 160px;
+	background: url(../img/seka.png) no-repeat right bottom;
+	background-size: cover;
+}
+.container {
+	width: 1320px !important;
+	margin-top: 20px;
+}
+.center-block {
+	position: relative;
+	background: #e9edee;
+	padding: 10px 5px;
+	height: 345px;
+}
+.right-text {
+	padding-top: 40px;
+}
+.right-text h4 {
+	display: inline-block;
+	margin-bottom: 15px;
+	font-family: simhei;
+	color: #0a3f67;
+}
+.entry {
+	display: inline-block;
+	width: 78px;
+	height: 29px;
+	background: url(../img/entry.png) no-repeat 0 0;
+}
+.footer {
+	border-top: 4px solid #0a3f67;
+	background: #e9edee;
+	padding: 10px 20px;
+	color: #545454;
+}
+.footer p {
+	margin-bottom: 0;
+}

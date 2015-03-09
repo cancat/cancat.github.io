@@ -1,132 +1,50 @@
 <html lang="zh">
 	<head>
 		<meta charset="utf-8" />
-		<title>Canvas-Filter</title>
-		<link rel="stylesheet" type="text/css" href="css/style.css">
-		<script src="js/ImageManager.js"></script>
-		<script src="js/Scene.js"></script>
-		<script type="text/javascript">
-			var Filters = {};
-
-			Filters.getCanvas = function(w,h) {
-			    var c = document.createElement('canvas');
-			    c.width = w;
-			    c.height = h;
-			    return c;
-			};
-
-			Filters.filter = function(filter, img, args) {
-				var c = this.getCanvas(img.width, img.height);
-				var ctx = c.getContext('2d');
-				ctx.drawImage(img,0,0);
-				var argus = imgData = ctx.getImageData(0,0,c.width,c.height);
-				if (!!args) {
-					argus = [imgData, args]
-				}
-				var filtered = !!filter?filter.apply(null,argus):imgData;
-				ctx.putImageData(filtered,0,0);
-				return c;
-			}
-
-			var grayscale = function(pixels) {
-			    var d = pixels.data;
-			    for (var i=0; i<d.length; i+=4) {
-			        var r = d[i];
-			        var g = d[i+1];
-			        var b = d[i+2];
-			        // CIE luminance for the RGB
-			        // The human eye is bad at seeing red and blue, so we de-emphasize them.
-			        var v = 0.2126*r + 0.7152*g + 0.0722*b;
-			        d[i] = d[i+1] = d[i+2] = v
-			   }
-			   return pixels;
-			};
-
-			var multiply = function(pixels,color) {
-				var d = pixels.data;
-				for (var i=0; i<d.length; i+=4) {
-					d[i] *= color[0] / 255;
-					d[i+1] *= color[1] / 255;
-					d[i+2] *= color[2] / 255;
-				}
-				return pixels;
-			}
-
-			var toRgb = function(hex) {
-				var r = parseInt(hex.substr(1,2),16);
-				var g = parseInt(hex.substr(3,2),16);
-				var b = parseInt(hex.substr(5,2),16);
-				return [r, g, b];
-			}
-			
-			var imageManager = new ImageManager();
-			
-			imageManager.load({
-				'demo': 'img/demo.png',
-				'test': 'img/test.png'
-			}, function () {
-				var srcList = [{label:'水母',data:imageManager.get('demo')}, {label:'小驴',data:imageManager.get('test')}];
-				var canvas = document.getElementById('mainCanvas');
-				var reset_btn = document.getElementById('reset-btn');
-				var multiply_btn = document.getElementById('multiply-btn');
-				var color_picker = document.getElementById('multiply-color');
-				var current_layer = document.getElementById('current-layer');
-				var layer_pointer = document.getElementById('layer-pointer');
-				var scene = new Scene(canvas, srcList);
-				scene.draw(canvas);
-				multiply_btn.onclick = function (e) {
-					e.preventDefault();
-					var color = toRgb(color_picker.value);
-					scene.filterLayer(color, scene.curLayer);
-				}
-				reset_btn.onclick = function (e) {
-					e.preventDefault();
-					scene.resetLayer(scene.curLayer);
-				}
-				canvas.onmouseenter = function (e) {
-					e.preventDefault();
-					canvas.style.cursor = 'pointer';
-					document.getElementById('layer-pointer').style.display = 'inline';
-				}
-				canvas.onmouseleave = function (e) {
-					e.preventDefault();
-					canvas.style.cursor = 'default';
-					document.getElementById('layer-pointer').style.display = 'none';
-				}
-				canvas.onmousemove = function (e) {
-					e.preventDefault();
-					var x = e.offsetX;
-					var y = e.offsetY;
-					var layer = scene.checkLayer(x, y);
-					layer_pointer.innerText = scene.imgList[layer].label;
-					layer_pointer.style.left = x + 12;
-					layer_pointer.style.top = y;
-				}
-				canvas.onclick = function (e) {
-					e.preventDefault();
-					var x = e.offsetX;
-					var y = e.offsetY;
-					var layer = scene.checkLayer(x, y);
-					scene.setCurLayer(layer);
-					current_layer.innerText = scene.imgList[scene.curLayer].label;
-				}
-			})
-		</script>
+		<title>色彩工厂</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/index.css">
 	</head>
 	<body>
-		<div class="container clearfix">
-			<div class="scene-border">
-				<div id="canvas-wrapper">
-					<canvas id="mainCanvas" width="100" height="100"></canvas>
-					<span id="layer-pointer"></span>
+		<header>
+			<div class="banner banner-0"></div>
+			<div class="middle-text text-center">
+				<span class="logo"></span>
+				<h1>色彩工厂</h1>
+				<p>—— 玩转百变工厂，定义你的生活。</p>
+			</div>
+			<div class="banner banner-1"></div>
+		</header>
+		<div class="container">
+			<div class="col-xs-7">
+				<div class="center-block clearfix">
+					<div class="left-pic col-xs-7">
+						<img src="img/left-pic.jpg" class="img-responsive">
+					</div>
+					<div class="right-text col-xs-5">
+						<h4 class="text-center">软件介绍</h4>
+						<p>想为自己工作的环境换装扮吗？想自己DIY工厂的色彩搭配吗？本软件“Color Factory电脑配色软件”可为工厂老板、员工、设计师等提供专业的配色，为您奏起生活的新篇章，美化工厂的每个角落。</p>
+						<p>配色部分分为国家标准、行业标准、Pantone配色标准色，可以进行多种参考的配色。</p>
+					</div>
 				</div>
 			</div>
-			<div id="tool-box">
-				<small>当前所选图层为：<b id="current-layer">null</b></small>
-				<input type="color" id="multiply-color">
-		    	<button id="multiply-btn">叠加</button>
-		    	<button id="reset-btn">复位</button>
-		    </div>
-	    </div>
+			<div class="col-xs-5">
+				<div class="center-block clearfix">
+					<div class="right-text col-xs-12">
+						<h4>软件特色</h4>
+						<a class="pull-right" href="diy.html"><span class="entry"></span></a>
+						<p>本软件可以实时上传工厂图片进行自主配色，可任意搭配色彩并且进行保存、对比和交流。此外，每个颜色都有五种建议的搭配方式。室内室外皆有搭配好的色彩方案进行提供。也可以根据行业标准色，参考其他工厂的案例进行色彩搭配。</p>
+						<p>本软件提供了数十张工厂模型图以供参考，可以在提供的列表里选择工厂的模型进行图像色彩分层编辑。不管是上传DIY还是选择模版都有提供专业的配色建议。</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<footer class="container">
+			<div class="col-xs-12">
+				<div class="col-xs-12 footer">
+					<p>2013-2015南开大学国家级大学生创新训练计划</p>
+				</div>
+			</div>
+		</footer>
 	</body>
 </html>

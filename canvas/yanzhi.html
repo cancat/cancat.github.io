@@ -1,0 +1,193 @@
+<html lang="zh">
+	<head>
+		<meta charset="utf-8" />
+		<title>色彩工厂</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<script type="text/javascript">
+			var Filters = {};
+
+			Filters.getCanvas = function(w,h) {
+			    var c = document.createElement('canvas');
+			    c.width = w;
+			    c.height = h;
+			    return c;
+			};
+
+			Filters.filter = function(filter, img, args) {
+				var c = this.getCanvas(img.width, img.height);
+				var ctx = c.getContext('2d');
+				ctx.drawImage(img,0,0);
+				var argus = imgData = ctx.getImageData(0,0,c.width,c.height);
+				if (!!args) {
+					argus = [imgData, args]
+				}
+				var filtered = !!filter?filter.apply(null,argus):imgData;
+				ctx.putImageData(filtered,0,0);
+				return c;
+			}
+
+			var grayscale = function(pixels) {
+			    var d = pixels.data;
+			    for (var i=0; i<d.length; i+=4) {
+			        var r = d[i];
+			        var g = d[i+1];
+			        var b = d[i+2];
+			        // CIE luminance for the RGB
+			        // The human eye is bad at seeing red and blue, so we de-emphasize them.
+			        var v = 0.2126*r + 0.7152*g + 0.0722*b;
+			        d[i] = d[i+1] = d[i+2] = v
+			   }
+			   return pixels;
+			};
+
+			var multiply = function(pixels,color) {
+				var d = pixels.data;
+				for (var i=0; i<d.length; i+=4) {
+					d[i] *= color[0] / 255;
+					d[i+1] *= color[1] / 255;
+					d[i+2] *= color[2] / 255;
+				}
+				return pixels;
+			}
+		</script>
+	</head>
+	<body>
+		<div class="container-fluid clearfix">
+			<aside id="sidebar">
+				<label class="color-title">国标标准</label>
+				<i class="icon iconfont">&#xf001a;</i>
+				<section class="gb-color">
+					<div id="colorpalette-0"></div>
+				</section>
+				<label class="color-title">行业标准</label>
+				<i class="icon iconfont">&#xf001a;</i>
+				<section class="ind-color">
+					<div id="colorpalette-1"></div>
+				</section>
+				<label class="color-title">潘通配色</label>
+				<i class="icon iconfont">&#xf001a;</i>
+				<section class="pantone-wrapper clearfix">
+					<div class="pantone-color">
+						<div id="colorpalette-2"></div>
+					</div>
+					<div id="switch-color" class="bootstrap-colorpalette">
+						<button type="button" class="btn-color" style="background-color: #FFD100" data-value="0"></button>
+						<button type="button" class="btn-color" style="background-color: #E23828" data-value="1"></button>
+						<button type="button" class="btn-color" style="background-color: #AC0481" data-value="2"></button>
+						<button type="button" class="btn-color" style="background-color: #0077D4" data-value="3"></button>
+						<button type="button" class="btn-color" style="background-color: #00AFAD" data-value="4"></button>
+						<button type="button" class="btn-color" style="background-color: #9B8900" data-value="5"></button>
+						<button type="button" class="btn-color" style="background-color: #D4BEB6" data-value="6"></button>
+						<button type="button" class="btn-color" style="background-color: #57527E" data-value="7"></button>
+						<button type="button" class="btn-color" style="background-color: #CDE3E2" data-value="8"></button>
+						<button type="button" class="btn-color" style="background-color: #002B5F" data-value="9"></button>
+						<button type="button" class="btn-color" style="background-color: #EA12AF" data-value="10"></button>
+					</div>
+				</section>
+				<div id="tool-box">
+					<span>当前图层:<b id="current-layer">背景</b></span>
+			    	<button type="button" id="reset-btn" class="button small">复位</button>
+			    </div>
+			    <label class="color-title">图层</label>
+				<i class="icon iconfont">&#xf001a;</i>
+				<button type="button" id="new-layer" class="button small">新建图层</button>
+			    <section id="layer">
+			    	<div class="layer-list"></div>
+			    </section>
+			    <label class="color-title">样本场景</label>
+				<i class="icon iconfont">&#xf001a;</i>
+				<div class="sample-scene">
+					<ul class="list-unstyled">
+						<li><a href="diy.html"><img src="img/ganli/thumb.jpg" alt="甘栗车间"><span class="sample-title small">甘栗车间</span></a></li>
+					</ul>
+				</div>
+			</aside>
+			<section class="scene">
+				<div class="scene-sec">
+					<div id="canvas-wrapper">
+						<canvas id="mainCanvas" width="100" height="100"></canvas>
+						<span id="layer-pointer"></span>
+					</div>
+				</div>
+			</section>
+			<section class="bottom-bar">
+				<div class="color-match">
+					<label class="current">色彩搭配</label>
+					<label>色彩参考</label>
+					<a href="#" class="more-sol"><i class="icon iconfont">&#xf001a;</i></a>
+					<div class="more-block">
+						<a href="#" class="hide-sol"><i class="icon iconfont">&#xf001a;</i></a>
+					</div>
+					<div class="color-exh"></div>
+					<div class="tool-box">
+						<button type="button" id="inColor" class="button small">配色存入</button>
+						<button type="button" id="geColor" class="button small">添加图层颜色</button>
+					</div>
+				</div>
+				<div class="color-suggest">
+					<label>方案建议</label>
+					<a href="#" class="more-sol"><i class="icon iconfont">&#xf001a;</i></a>
+					<div class="more-block">
+						<select class="match-type">
+							<option value="0">单色系搭配</option>
+							<option value="1">相似色搭配</option>
+							<option value="2">互补色搭配</option>
+							<option value="3">邻接互补色</option>
+							<option value="4">三和色搭配</option>
+						</select>
+						<a href="#" class="hide-sol"><i class="icon iconfont">&#xf001a;</i></a>
+						<div class="match-exh"></div>
+					</div>
+					<div class="match-selected"></div>
+					<span class="match-label small"></span>
+				</div>
+				<div class="color-now">
+					<div>
+						<label>现选颜色</label>
+					</div>
+					<div class="pull-left">
+						<span class="color-square"></span>
+					</div>
+					<div class="pull-left" style="margin-left: 10px">
+						<label class="layer-now small">背景</label><br>
+						<label class="color small">#ffffff</label>
+					</div>
+				</div>
+				<div class="local-img">
+					<div class="upload-local">
+						<button type="button" class="button small">打开本地图片</button>
+						<input type="file" id="input" onchange="imagesSelected(this.files)">
+					</div>
+					<div class="tool">
+						<a class="select-tool" href="#"></a>
+					</div>
+				</div>
+			</section>
+	    </div>
+	    <div class="modal-wrap">
+	    	<div class="modal-o">
+	    		<div class="modal-i">
+	    			<div class="modal-title"><label for="title">配色存入</label></div>
+	    			<div class="modal-body form-horizontal">
+   						<label class="col-xs-4 control-label">色彩搭配名称</label>
+					    <div class="col-xs-8">
+					      	<input type="text" class="match-name form-control">
+					      	<br>
+					    </div>
+					    <div class="col-xs-12 text-center">
+					    	<button type="button" id="modalQ" class="button small">取消</button>
+					    	<button type="button" id="modalC" class="button small">存入</button>
+					    </div>
+ 					</div>
+	    		</div>
+	    	</div>
+	    </div>
+	    <script src='js/zepto.min.js'></script>
+	    <script src='js/bootstrap-colorpalette.js'></script>
+	    <script src="js/ImageManager.js"></script>
+		<script src="js/Scene.js"></script>
+		<script src="js/calcolor.js"></script>
+		<script src="js/yanzhi.js"></script>
+	</body>
+</html>
