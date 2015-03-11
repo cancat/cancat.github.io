@@ -57,6 +57,7 @@ body {
 	padding: 2px 4px;
 	background: #f7f7f7;
 	border: 1px solid #333;
+	font-family: tahoma simsun;
 	font-size: 12px;
 	white-space: nowrap;
 }
@@ -196,6 +197,16 @@ body {
 	background: #f7f7f7;
 	border-right: 1px solid #e7e7e7;
 }
+.color-tab-advise {
+	cursor: pointer;
+	border-radius: 2px;
+	padding: 0 4px;
+	background: #d5d5d5;
+}
+.color-tab-advise:hover {
+	background: #333;
+	color: #fff;
+}
 .color-suggest,
 .color-now,
 .local-img {
@@ -243,6 +254,9 @@ body {
 .more-block select {
 	border-radius: 3px;
 	padding: 2px 4px;
+}
+.more-block h5 {
+	font-family: inherit;
 }
 .color-match .more-block {
 	width: 300px;

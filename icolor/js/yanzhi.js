@@ -90,14 +90,12 @@ var maskCanvas = document.createElement('canvas');
 var scene = new Scene(canvas);
 var imageManager = new ImageManager();
 imageManager.load({
-	'background': 'img/ganli/background.png',
-	'wall': 'img/ganli/wall.png',
-	'edge': 'img/ganli/edge.png',
-	'normald': 'img/ganli/normald.png',
-	'scrolld': 'img/ganli/scrolld.png',
-	'handrail': 'img/ganli/handrail.png'
+	'background': 'img/yanzhi/background.png',
+	'wall': 'img/yanzhi/wall.png',
+	'edge': 'img/yanzhi/edge.png',
+	'door': 'img/yanzhi/door.png'
 }, function () {
-	var srcList = [{label:'背景',data:imageManager.get('background')}, {label:'墙面',data:imageManager.get('wall')}, {label:'挑檐',data:imageManager.get('edge')}, {label:'普通门',data:imageManager.get('normald')}, {label:'卷帘门',data:imageManager.get('scrolld')}, {label:'楼梯栏杆',data:imageManager.get('handrail')}];
+	var srcList = [{label:'背景',data:imageManager.get('background')}, {label:'墙体',data:imageManager.get('wall')}, {label:'挑檐',data:imageManager.get('edge')}, {label:'门',data:imageManager.get('door')}];
 	var selectT = false, dotStart = [], lastDot = [], dotArray = [];
 	scene.loadLayer(srcList);
 	scene.draw(canvas);
@@ -281,14 +279,27 @@ imageManager.load({
 	});
 	$('.color-match .more-sol').on('click', function (e) {
 		e.preventDefault();
-		$('.color-match .more-block').css({
+		$('.color-match .match-block').css({
 			'transform': 'translateY(-109px)',
 			'z-index': '0'
 		});
 	});
-	$('.color-match .hide-sol').on('click', function (e) {
+	$('.match-block .hide-sol').on('click', function (e) {
 		e.preventDefault();
-		$('.color-match .more-block').css({
+		$('.color-match .match-block').css({
+			'transform': 'translateY(0px)',
+			'z-index': '-1'
+		})
+	});
+	$('.color-tab-advise').on('click', function () {
+		$('.color-match .advise-block').css({
+			'transform': 'translateY(-109px)',
+			'z-index': '0'
+		})
+	});
+	$('.advise-block .hide-sol').on('click', function (e) {
+		e.preventDefault();
+		$('.color-match .advise-block').css({
 			'transform': 'translateY(0px)',
 			'z-index': '-1'
 		})
