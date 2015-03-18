@@ -85,6 +85,61 @@ function hsv2rgb(hsx){
 	rg.b=Math.round(rg.b*255);
 	return(rg);
 }
+function rgb2hsl(rg) {
+
+    var r = bound01(rg.r, 255);
+    var g = bound01(rg.g, 255);
+    var b = bound01(rg.b, 255);
+
+    var max = Math.max(r, g, b), min = Math.min(r, g, b);
+    var h, s, l = (max + min) / 2;
+
+    if(max == min) {
+        h = s = 0; // achromatic
+    }
+    else {
+        var d = max - min;
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+        switch(max) {
+            case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+            case g: h = (b - r) / d + 2; break;
+            case b: h = (r - g) / d + 4; break;
+        }
+
+        h /= 6;
+    }
+
+    return { h: Math.round(h*360), s: Math.round(s*100), l: Math.round(l*100) };
+}
+function hsl2rgb(hs) {
+    var r, g, b;
+
+    var h = bound01(hs.h, 360);
+    var s = bound01(hs.s, 100);
+    var l = bound01(hs.l, 100);
+
+    function hue2rgb(p, q, t) {
+        if(t < 0) t += 1;
+        if(t > 1) t -= 1;
+        if(t < 1/6) return p + (q - p) * 6 * t;
+        if(t < 1/2) return q;
+        if(t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+        return p;
+    }
+
+    if(s === 0) {
+        r = g = b = l; // achromatic
+    }
+    else {
+        var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+        var p = 2 * l - q;
+        r = hue2rgb(p, q, h + 1/3);
+        g = hue2rgb(p, q, h);
+        b = hue2rgb(p, q, h - 1/3);
+    }
+
+    return { r: Math.round(r * 255), g: Math.round(g * 255), b: Math.round(b * 255) };
+}
 function hueToWheel(h) {
     if(h<=120){
         return(Math.round(h*1.5));
@@ -98,6 +153,28 @@ function wheelToHue(w) {
     }else{
         return(Math.round(120+(w-180)/0.75));
     }
+}
+function bound01(n, max) {
+    if (isOnePointZero(n)) { n = "100%"; }
+
+    var processPercent = isPercentage(n);
+    n = Math.min(max, Math.max(0, parseFloat(n)));
+
+    if (processPercent) {
+        n = parseInt(n * max, 10) / 100;
+    }
+
+    if ((Math.abs(n - max) < 0.000001)) {
+        return 1;
+    }
+
+    return (n % max) / parseFloat(max);
+}
+function isOnePointZero(n) {
+    return typeof n == "string" && n.indexOf('.') != -1 && parseFloat(n) === 1;
+}
+function isPercentage(n) {
+    return typeof n === "string" && n.indexOf('%') != -1;
 }
 var colorAdv = {};
 colorAdv.Type = ['单色系搭配', '相似色搭配', '互补色搭配', '邻接互补色', '三和色搭配'];

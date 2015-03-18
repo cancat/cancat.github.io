@@ -13,6 +13,44 @@ function Scene(canvas, imgList) {
 	}
 }
 
+var toHSL = function (d) {
+	var rgb = {};
+	for (var i=0; i<d.length; i+=4) {
+		rgb.r = d[i];
+		rgb.g = d[i+1];
+		rgb.b = d[i+2];
+		var hs = rgb2hsl(rgb);
+		d[i] = hs.h;
+		d[i+1] = hs.s;
+		d[i+2] = hs.l;
+	}
+	return d
+}
+var toRGB = function (d) {
+	var hsl = {};
+	for (var i=0; i<d.length; i+=4) {
+		hsl.h = d[i];
+		hsl.s = d[i+1];
+		hsl.l = d[i+2];
+		var rg = hsl2rgb(hsl);
+		d[i] = rg.r;
+		d[i+1] = rg.g;
+		d[i+2] = rg.b;
+	}
+	return d
+}
+var colorBlend = function (pixels, color) {
+	var data = pixels.data;
+	var d = toHSL(data);
+	var colorHSl = rgb2hsl({r: color[0], g: color[1], b: color[2]});
+	for (var i=0; i<d.length; i+=4) {
+		d[i] = colorHSl.h;
+		d[i+1] = colorHSl.s;
+	}
+	d = toRGB(d);
+	return pixels;
+}
+
 var p = Scene.prototype;
 
 p.reset = function () {
