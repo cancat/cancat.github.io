@@ -31,42 +31,52 @@ body a:hover{
 	-moz-background-size:cover;
 	-ms-background-size:cover;
 	-o-background-size:cover;
-	min-height:600px;
+	min-height:580px;
 }
 .header{
-	padding:2em 0;
+	padding:10px 0 0;
+	color: #535353;
 }
-.logo{
-	float:left
+.logo {
+	margin-right: 20px;
 }
-.logo a{
-	display:block;
+.phone {
+	line-height: 60px;
 }
-.logo-right{
-	float:right;
+.phone-icon {
+	display: inline-block;
+	width: 34px;
+	height: 34px;
+	background: url(../images/phone.png) no-repeat 50% 50%;
+	background-size: cover;
+	margin-right: 5px;
+	vertical-align: middle;
 }
-.logo-right span{
+.logo-menu {
+	line-height: 42px;
+}
+.logo-menu span{
 	display:none;
 }
-.logo-right ul{
+.logo-menu ul{
 	padding:0.5em 0;
 	margin:0;
 	background: rgba(255,255,255,.8);
 	border-radius: 4px;
 }
-.logo-right ul li{
+.logo-menu ul li{
 	display:inline-block;
 	margin:0 15px;
 }
-.logo-right ul li a{
+.logo-menu ul li a{
 	font-size:16px;
 	text-decoration:none;
-	color:#5E5E5E;
+	color:#535353;
 	font-weight:500;
 	
 }
-.logo-right ul li a:hover{
-	color: #5E5E5E;
+.logo-menu ul li a:hover{
+	color: #6a3906;
 	text-decoration:none;
 }
 .banner-info{
@@ -120,7 +130,7 @@ body a:hover{
 
 .cl-effect-1 a::before {
 	margin-right: 10px;
-	content: '{';
+	content: '';
 	-webkit-transform: translateX(20px);
 	-moz-transform: translateX(20px);
 	transform: translateX(20px);
@@ -128,7 +138,7 @@ body a:hover{
 
 .cl-effect-1 a::after {
 	margin-left: 10px;
-	content: '}';
+	content: '';
 	-webkit-transform: translateX(-20px);
 	-moz-transform: translateX(-20px);
 	transform: translateX(-20px);
@@ -187,6 +197,24 @@ body a:hover{
   transform: scale(1);
 }
 /*-- //banner --*/
+
+.sep {
+	background-size: cover;
+	min-height: 140px;
+}
+
+.sep-1 {
+	background: url(../images/sep.jpg) no-repeat 50% 50%;
+}
+
+.sep-2 {
+	background: url(../images/sep-1.jpg) no-repeat 50% 50%;
+}
+
+.sep-3 {
+	background: url(../images/sep-2.jpg) no-repeat 50% 50%;
+}
+
 /*-- portfolio --*/
 .portfolio{
 	padding:4em 0;
@@ -417,9 +445,11 @@ body a:hover{
 /*-- //about --*/
 /*-- contact --*/
 .contact{
-	padding:19em 0;
-	background:url(../images/bg.jpg) no-repeat 0 0;
-	background-size: cover;
+	padding:10em 0 25em;
+	background:#eee;
+	background-image: url(../images/crab.png);
+	background-position: center bottom;
+	background-repeat: no-repeat;
 	position: relative;
 }
 .mask-bg {
@@ -430,12 +460,22 @@ body a:hover{
 	height: 100%;
 	background: rgba(0,0,0,.4);
 }
-.contact-info {
+.release-info {
 	position: absolute;
 	top: 26%;
+	left: 5%;
+	width: 40%;
+	z-index: 100;
+}
+.contact-info {
+	position: absolute;
+	top: 20%;
 	left: 50%;
 	width: 40% !important;
 	z-index: 102;
+	background: rgba(255,255,255,.8);
+	border-radius: 6px;
+	padding: 10px 20px 50px;
 }
 .contact-info ul li {
   border: none;
@@ -483,27 +523,6 @@ body a:hover{
   -o-border-bottom-left-radius: 5px;
   -moz-border-bottom-left-radius: 5px;
   -webkit-border-bottom-left-radius: 5px;
-   
-}
-.contact input[type="text"], .contact textarea {
-  width: 98%;
-  padding: 11.5px 20px;
-  color: #a6a5a5;
-  font-size: 16px;
-  font-weight: 700;
-  outline: none;
-  background: #f1f1f1;
-  font-family: simsun;
-  border: 2px solid #3c4955;
-  border-left: none;
-  border-top-right-radius: 5px;
-  -o-border-top-right-radius: 5px;
-  -moz-border-top-right-radius: 5px;
-  -webkit-border-top-right-radius: 5px;
-  -ms-border-bottom-right-radius: 5px;
-  -o-border-bottom-right-radius: 5px;
-  -moz-border-bottom-right-radius: 5px;
-  -webkit-border-bottom-right-radius: 5px;
    
 }
 .contact textarea {
@@ -558,7 +577,7 @@ body a:hover{
 /*-- footer --*/
 .footer{
 	padding:2em 0;
-	background:#3c4955;
+	color: #535353;
 }
 .footer-left{
 	float:left;
