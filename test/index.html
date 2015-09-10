@@ -1,27 +1,31 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<style type="text/css">
-		body {
-			background: black;
+	<link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+	<style>
+		.icon {
+			margin-right: 10px;
 		}
-		.bottom .icon {
-			background: white;
-		}
-		.bottom > .icon {
-			color: red;
-		}
-		.bottom > .icon > .icon {
-			color: black;
+		.icon:hover {
+			cursor: pointer;
 		}
 	</style>
 </head>
 <body>
-	<div class="bottom">
-		<div class="icon">
-			hello!
-			<div class="icon">gao yan!</div>
-		</div>
+	<div class="container">
+		<br>
+		<div class="col-xs-4"><span class="glyphicon glyphicon-eye-open icon"></span><input type="text" class="form-control" style="display:inline-block;width:80%"></div>
 	</div>
 </body>
+<script>
+	var icon = document.querySelector('.icon');
+	document.body.onmousedown = function(e) {
+		if (e.target === icon) {
+			icon.className = 'glyphicon glyphicon-eye-close icon';
+		}
+	}
+	document.body.onmouseup = function() {
+		icon.className = 'glyphicon glyphicon-eye-open icon';
+	}
+</script>
 </html>
