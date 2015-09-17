@@ -1,31 +1,41 @@
 <html>
 <head>
-	<meta charset="utf-8" />
-	<link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
-	<style>
-		.icon {
-			margin-right: 10px;
-		}
-		.icon:hover {
-			cursor: pointer;
-		}
-	</style>
+	<meta lang="zh-CN">
+	<meta charset="utf-8">
+	<title>文件读取测试</title>
 </head>
 <body>
-	<div class="container">
-		<br>
-		<div class="col-xs-4"><span class="glyphicon glyphicon-eye-open icon"></span><input type="text" class="form-control" style="display:inline-block;width:80%"></div>
-	</div>
+	<input type="file" id="input" onchange="fileSelected(this.files)">
+	<main></main>
 </body>
 <script>
-	var icon = document.querySelector('.icon');
-	document.body.onmousedown = function(e) {
-		if (e.target === icon) {
-			icon.className = 'glyphicon glyphicon-eye-close icon';
-		}
-	}
-	document.body.onmouseup = function() {
-		icon.className = 'glyphicon glyphicon-eye-open icon';
-	}
+	if(window.FileReader) {  
+		var main = document.querySelector('main'); // 获取DOM对象用于显示checkbox
+
+    	var fr = new FileReader();                 // 初始化FileReader实例
+	    // add your code here  
+	    fr.onload = function () {
+	    	var result = eval(this.result);        // 获得文件中的json串并保存至变量result
+	    	printCheckBox(eval(this.result));      // 根据json数据打印checkbox
+	    }
+
+	    function fileSelected(files) {
+	    	fr.readAsText(files[0]);
+	    }
+
+	    function printCheckBox(source) {
+	    	var html = [];
+	    	for (var i = 0; i < source.length; i++) {
+	    		html.push('<label><input type="checkbox" name="checkbox" value="');
+	    		html.push(source[i].id);
+	    		html.push('">');
+	    		html.push(source[i].label);
+	    		html.push('</label>');
+	    	}
+	    	main.innerHTML = html.join(''); // 插入checkbox代码片段
+	    }
+	} else {  
+	    alert("Not supported by your browser!");  
+	}  
 </script>
 </html>
