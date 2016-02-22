@@ -1,0 +1,218 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+body {
+    background: #eee;
+}
+
+nav ul a,
+nav .brand-logo {
+    color: #444;
+}
+
+p {
+    line-height: 2rem;
+}
+
+.button-collapse {
+    color: #26a69a;
+}
+
+.parallax-container {
+    min-height: 380px;
+    line-height: 0;
+    height: auto;
+    color: rgba(255,255,255,.9);
+}
+
+.parallax-container .section {
+    width: 100%;
+}
+
+@media only screen and (max-width : 992px) {
+    .parallax-container .section {
+        position: absolute;
+        top: 40%;
+    }
+    #index-banner .section {
+        top: 10%;
+    }
+}
+
+@media only screen and (max-width : 600px) {
+    #index-banner .section {
+        top: 0;
+    }
+}
+
+
+.icon-block {
+    padding: 0 15px;
+}
+
+footer.page-footer {
+    margin: 0;
+}
+
+
+/********* Custom css ***********/
+h1, h2, h3, h4 {
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+nav {
+    background: #1976D2 !important;
+}
+
+nav ul a {
+    color: #fff;
+}
+
+nav .brand-logo {
+    height: 100%;
+    padding: 5px 0;
+}
+
+.dropdown-content {
+    height: auto !important;
+}
+
+.dropdown-content li > a, .dropdown-content li > span {
+    color: #444;
+    font-size: 14px;
+}
+
+.brand-logo img {
+    height: 100%;
+}
+
+#index-banner {
+    height: 550px;
+}
+
+#index-banner h1, #index-banner h5 {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+#explore-button {
+    background: #0288d1;
+    padding: 0 50px;
+    height: 70px;
+    line-height: 70px;
+    font-size: 18px;
+    margin-top: 60px;
+}
+
+.section > h4 {
+    margin-bottom: 60px;
+}
+
+.demo-list {
+    display: block;
+    overflow: hidden;
+    text-align: center;
+}
+
+.demo-list li {
+    display: inline-block;
+    width: 300px;
+    padding: 0 10px;
+    margin-bottom: 20px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.demo-list a {
+    display: block;
+    padding: 0 25px;
+    margin: 0;
+    height: 80px;
+    line-height: 80px;
+    border: 1px solid #0d47a1;
+    color: #fff;
+    font-size: 16px;
+    background: #1976D2;
+    text-align: center;
+}
+
+.demo-list a:hover, .demo-list a.active {
+    color: #fff;
+    background: #0097a7;
+    border: 1px solid #006064;
+}
+
+.demo-list i {
+    font-size: 32px;
+    float: left;
+}
+
+.sub-demo li {
+    width: auto;
+}
+
+.sub-demo a {
+    height: 56px;
+    line-height: 56px;
+    background: #fafafa;
+    border: 1px solid #bdbdbd;
+    color: #444;
+}
+
+#features h5 {
+    font-size: 20px;
+}
+
+#features h5 i {
+    font-size: 28px;
+    display: inline-block;
+    margin-right: 15px;
+    vertical-align: middle;
+}
+
+#features p {
+    line-height: 1.6;
+}
+
+.options {
+    -moz-column-count: 2;
+    -moz-column-gap: 60px;
+    -webkit-column-count: 2;
+    -webkit-column-gap: 60px;
+    column-count: 2;
+    column-gap: 60px;
+}
+
+.options li {
+    font-size: 16px;
+    font-weight: 300;
+    color: #242424;
+    text-align: left;
+    margin: 0 0 20px 0;
+    padding-left: 20px;
+    position: relative;
+}
+
+.options li:before {
+    content: '\2022';
+    position: absolute;
+    left: 0;
+    top: -3px;
+    color: #09f;
+    font-size: 24px;
+    line-height: 1;
+}
+
+footer.page-footer {
+    padding-top: 0;
+    color: #444;
+}
+
+footer.page-footer .footer-copyright {
+    color: #444;
+}

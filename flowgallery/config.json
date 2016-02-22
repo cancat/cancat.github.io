@@ -1,0 +1,158 @@
+[
+    {
+        "type": "photo",
+        "category": "Category One",
+        "thumbnail": "media/photos/thumbs/pic1.jpg",
+        "source": "media/photos/pic1.jpg",
+        "title": "Example of Photo",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident nisi ipsam praesentium reprehenderit modi illo voluptatum libero aperiam voluptas fugit minima esse neque optio ipsa dicta fugiat voluptate maiores."
+    },
+
+    {
+        "type": "audio",
+        "category": "Category One, Category Two",
+        "mp3": "media/audios/symphony-9.mp3",
+        "ogg": "media/audios/symphony-9.ogg",
+        "thumbnail": "media/audios/thumbs/piano.jpg",
+        "title": "Example of Audio",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum quibusdam."
+    },
+
+    {
+        "type": "video",
+        "category": "Category Three",
+        "thumbnail": "media/videos/thumbs/birds.jpg",
+        "mp4": "media/videos/birds.mp4",
+        "ogv": "media/videos/birds.ogv",
+        "webm": "media/videos/birds.webm",
+        "title": "Example of Video",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum quibusdam."
+    },
+
+    {
+        "type": "photo",
+        "category": "Category One",
+        "thumbnail": "media/photos/thumbs/pic2.jpg",
+        "source": "media/photos/pic2.jpg",
+        "title": "Example of Photo",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum quibusdam."
+    },
+
+    {
+        "type": "audio",
+        "category": "Category Two",
+        "thumbnail": "media/audios/thumbs/violin.jpg",
+        "mp3": "media/audios/symphony-9.mp3",
+        "ogg": "media/audios/symphony-9.ogg",
+        "title": "Example of Audio",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum quibusdam."
+    },
+
+    {
+        "type": "photo",
+        "category": "Category Two",
+        "thumbnail": "media/photos/thumbs/pic3.jpg",
+        "source": "media/photos/pic3.jpg",
+        "title": "Example of Photo",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum quibusdam."
+    },
+
+    {
+        "type": "photo",
+        "category": "Category Two",
+        "thumbnail": "media/photos/thumbs/pic4.jpg",
+        "source": "media/photos/pic4.jpg",
+        "title": "Example of Photo",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident nisi ipsam praesentium reprehenderit modi illo voluptatum libero aperiam voluptas fugit minima esse neque optio ipsa dicta fugiat voluptate maiores. Velit quaerat quis magnam cupiditate consequuntur ipsa aperiam exercitationem hic dignissimos! Repudiandae aspernatur quo adipisci ad quas architecto explicabo debitis."
+    },
+
+    {
+        "type": "photo",
+        "category": "Category Three",
+        "thumbnail": "media/photos/thumbs/pic5.jpg",
+        "source": "media/photos/pic5.jpg",
+        "title": "Example of Photo",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum quibusdam."
+    },
+
+    {
+        "type": "photo",
+        "category": "Category One",
+        "thumbnail": "media/photos/thumbs/pic6.jpg",
+        "source": "media/photos/pic6.jpg",
+        "title": "Example of Photo",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum quibusdam."
+    },
+
+    {
+        "type": "audio",
+        "thumbnail": "media/audios/thumbs/clarinet.jpg",
+        "mp3": "media/audios/symphony-9.mp3",
+        "ogg": "media/audios/symphony-9.ogg",
+        "title": "Example of Audio",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum quibusdam."
+    },
+
+    {
+        "type": "photo",
+        "category": "Category One",
+        "thumbnail": "media/photos/thumbs/pic7.jpg",
+        "source": "media/photos/pic7.jpg",
+        "title": "Example of Photo",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum quibusdam."
+    },
+
+    {
+        "type": "audio",
+        "thumbnail": "media/audios/thumbs/cello.jpg",
+        "mp3": "media/audios/symphony-9.mp3",
+        "ogg": "media/audios/symphony-9.ogg",
+        "title": "Example of Audio",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum quibusdam."
+    },
+
+    {
+        "type": "photo",
+        "category": "Category One, Category Three",
+        "thumbnail": "media/photos/thumbs/pic8.jpg",
+        "source": "media/photos/pic8.jpg",
+        "title": "Example of Photo",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum quibusdam."
+    },
+
+    {
+        "type": "photo",
+        "category": "Category Two",
+        "thumbnail": "media/photos/thumbs/pic9.jpg",
+        "source": "media/photos/pic9.jpg",
+        "title": "Example of Photo",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum quibusdam."
+    },
+
+    {
+        "type": "photo",
+        "category": "Category Two, Category Three",
+        "thumbnail": "media/photos/thumbs/pic10.jpg",
+        "source": "media/photos/pic10.jpg",
+        "title": "Example of Photo",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum quibusdam."
+    },
+
+    {
+        "type": "audio",
+        "thumbnail": "media/audios/thumbs/trumpet.jpg",
+        "mp3": "media/audios/symphony-9.mp3",
+        "ogg": "media/audios/symphony-9.ogg",
+        "title": "Example of Audio",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum quibusdam."
+    },
+
+    {
+        "type": "audio",
+        "thumbnail": "media/audios/thumbs/guitar.jpg",
+        "mp3": "media/audios/symphony-9.mp3",
+        "ogg": "media/audios/symphony-9.ogg",
+        "title": "Example of Audio",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum quibusdam."
+    }
+]
