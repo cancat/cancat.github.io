@@ -1,0 +1,140 @@
+{
+  "title": {
+    "text": {
+      "headline": "中国历史人物",
+      "text":     "中国古代历史人物介绍"
+    }
+  },
+  "eras": [
+    {
+      "start_date": {
+        "year":         "581"
+      },
+      "end_date": {
+        "year":         "618"
+      },
+      "text": {
+        "headline": "隋朝"
+      }
+    },
+    {
+      "start_date": {
+        "year":         "618"
+      },
+      "end_date": {
+        "year":         "907"
+      },
+      "text": {
+        "headline": "唐朝"
+      }
+    },
+    {
+      "start_date": {
+        "year":         "960"
+      },
+      "end_date": {
+        "year":         "1279"
+      },
+      "text": {
+        "headline": "宋朝"
+      }
+    },
+    {
+      "start_date": {
+        "year":         "1368"
+      },
+      "end_date": {
+        "year":         "1644"
+      },
+      "text": {
+        "headline": "明朝"
+      }
+    }
+  ],
+  "events": [
+    {
+      "start_date": {
+        "year":			"701"
+      },
+      "end_date": {
+        "year":			"762"
+      },
+      "media": {
+        "thumbnail": "http://d.hiphotos.baidu.com/baike/w%3D268/sign=b6f103ab52da81cb4ee684cb6a67d0a4/78310a55b319ebc4acda9dc68126cffc1f1716ca.jpg",
+        "url": "<iframe width=\"600\" height=\"400\" src=\"http://haocong.github.io/flowgallery\"></iframe>"
+      },
+      "background": {
+        "opacity":"50",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/a/ad/Sui_Wendi_Tang.jpg"
+      },
+      "text": {
+        "headline": "李白",
+        "text": "李白（701年2月8日—762年12月)，字太白，号青莲居士，又号“谪仙人”，汉族，绵州昌隆县（今四川省江油市）人，是唐代伟大的浪漫主义诗人，被后人誉为“诗仙”。与杜甫并称为“李杜”，为了与另两位诗人李商隐与杜牧即“小李杜”区别，杜甫与李白又合称“大李杜”。其人爽朗大方，爱饮酒作诗，喜交友。李白深受黄老列庄思想影响,有《李太白集》传世,诗作中多以醉时写的,代表作有《望庐山瀑布》、《行路难》、《蜀道难》、《将进酒》、《梁甫吟》、《早发白帝城》等多首。李白所作词赋，宋人已有传记（如文莹《湘山野录》卷上），就其开创意义及艺术成就而言，“李白词”享有极为崇高的地位。"
+      }
+    },
+    {
+      "start_date": {
+        "year":			"712"
+      },
+      "end_date": {
+        "year":			"770"
+      },
+      "media": {
+        "thumbnail": "http://e.hiphotos.baidu.com/baike/w%3D268/sign=e63619f708d162d985ee651a29dfa950/bf096b63f6246b60e80de547e9f81a4c510fa286.jpg",
+        "url": "<iframe width=\"600\" height=\"400\" src=\"http://haocong.github.io/flowgallery\"></iframe>"
+      },
+      "text": {
+        "headline": "杜甫",
+        "text": "杜甫（公元712年－公元770年），字子美，汉族，河南巩县（今河南巩义）人，出身京兆杜氏分支之一的襄阳杜氏。[1]  自号少陵野老，唐代伟大的现实主义诗人，与李白合称“李杜”。为了与另两位诗人李商隐与杜牧即“小李杜”区别，杜甫与李白又合称“大李杜”，杜甫也常被称为“老杜”。杜甫在中国古典诗歌中的影响非常深远，被后人称为“诗圣”，他的诗被称为“诗史”。后世称其杜拾遗、杜工部，也称他杜少陵、杜草堂。"
+      }
+    },
+    {
+      "start_date": {
+        "year":			"1084"
+      },
+      "end_date": {
+        "year":			"1155"
+      },
+      "media": {
+        "thumbnail": "http://f.hiphotos.baidu.com/baike/s%3D220/sign=cccff7e2b151f819f5250448eab64a76/42166d224f4a20a4b3fe4d0e91529822730ed013.jpg",
+        "url": "<iframe width=\"600\" height=\"400\" src=\"http://haocong.github.io/flowgallery\"></iframe>"
+      },
+      "text": {
+        "headline": "李清照",
+        "text": "李清照（1084年3月13日—1155年5月12日），号易安居士，汉族，齐州章丘（今山东章丘）人。宋代（两宋之交）女词人，婉约词派代表，有“千古第一才女”之称。李清照出生于书香门第，早期生活优裕，其父李格非藏书甚富，她小时候就在良好的家庭环境中打下文学基础。出嫁后与夫赵明诚共同致力于书画金石的搜集整理。金兵入据中原时，流寓南方，境遇孤苦。所作词，前期多写其悠闲生活，后期多悲叹身世，情调感伤。形式上善用白描手法，自辟途径，语言清丽。论词强调协律，崇尚典雅，提出词“别是一家”之说，反对以作诗文之法作词。能诗，留存不多，部分篇章感时咏史，情辞慷慨，与其词风不同。"
+      }
+    },
+    {
+      "start_date": {
+        "year":			"1037"
+      },
+      "end_date": {
+        "year":			"1101"
+      },
+      "media": {
+        "thumbnail": "http://b.hiphotos.baidu.com/baike/w%3D268/sign=19342f88be3eb13544c7b0bd9e1fa8cb/d788d43f8794a4c2e420e44b0cf41bd5ad6e394a.jpg",
+        "url": "<iframe width=\"600\" height=\"400\" src=\"http://haocong.github.io/flowgallery\"></iframe>"
+      },
+      "text": {
+        "headline": "苏轼",
+        "text": "苏轼（1037年1月8日—1101年8月24日），字子瞻，又字和仲，号东坡居士，世称苏东坡、苏仙[1-3]  。汉族，北宋眉州眉山（今属四川省眉山市）人，祖籍河北栾城，北宋著名文学家、书法家、画家。嘉祐二年（1057年），苏轼进士及第。宋神宗时曾在凤翔、杭州、密州、徐州、湖州等地任职。元丰三年（1080年），因“乌台诗案”受诬陷被贬黄州任团练副使。宋哲宗即位后，曾任翰林学士、侍读学士、礼部尚书等职，并出知杭州、颍州、扬州、定州等地，晚年因新党执政被贬惠州、儋州。宋徽宗时获大赦北还，途中于常州病逝。宋高宗时追赠太师，谥号“文忠”。"
+      }
+    },
+    {
+      "start_date": {
+        "year":			"1574"
+      },
+      "end_date": {
+        "year":			"1646"
+      },
+      "media": {
+        "thumbnail": "http://a.hiphotos.baidu.com/baike/w%3D268/sign=89efce765e82b2b7a79f3ec209accb0a/fcfaaf51f3deb48fa4fff7acf71f3a292df57829.jpg",
+        "url": "<iframe width=\"600\" height=\"400\" src=\"http://haocong.github.io/flowgallery\"></iframe>"
+      },
+      "text": {
+        "headline": "冯梦龙",
+        "text": "冯梦龙（1574－1646），明代文学家，思想家，戏曲家。字犹龙，又字子犹，号龙子犹、墨憨斋主人、顾曲散人、吴下词奴、姑苏词奴、前周柱史等。汉族，南直隶苏州府长洲县（今江苏省苏州市）人，出身士大夫家庭。兄梦桂，善画,书。弟梦熊，太学生，曾从冯梦龙治《春秋》，有诗传世。他们兄弟三人并称“吴下三冯”。他的作品比较强调感情和行为，最有名的作品为《喻世明言》（又名《古今小说》）、《警世通言》、《醒世恒言》，合称“三言”。三言与明代凌濛初的《初刻拍案惊奇》、《二刻拍案惊奇》合称“三言两拍”，是中国白话短篇小说的经典代表。冯梦龙以其对小说、戏曲、民歌、笑话等通俗文学的创作、搜集、整理、编辑，为我国文学做出了独异的贡献。"
+      }
+    }
+  ]
+}
