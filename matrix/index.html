@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>The Matrix</title>
+  <style type="text/css" media="screen">
+    html, body {
+      margin: 0;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="viewStyle"></canvas>
+  <script>
+    class Matrix {
+
+      constructor(canvas) {
+        this.canvas = canvas;
+        this.ctx = canvas.getContext('2d');
+        this.letters = Array(256).join(0).split('');
+        this.timer = null;
+
+        this.backup = this.letters.map(function(val) {
+          return val = 1 - Math.random() * 1e3;
+        });
+
+        this.bind();
+        this.reload();
+      }
+
+      bind() {
+        window.addEventListener('resize', e => this.reload(), false);
+      }
+
+      reload() {
+        this.resetCanvas();
+        this.letters = this.backup.slice(0);
+        this.setSpeed();
+      }
+
+      setSpeed(speed) {
+        this.kill();
+        this.exec(speed);
+      }
+
+      kill() {
+        this.timer ? clearInterval(this.timer) : void 0;
+      }
+
+      exec(speed = 33) {
+        this.timer = setInterval(() => this.draw(), speed);
+      }
+
+      draw() {
+        this.ctx.fillStyle = 'rgba(0, 0, 0, .05)';
+        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+        this.ctx.fillStyle = '#0F0';
+
+        this.letters.map((y_pos, i) => {
+          let text = String.fromCharCode(/*3e4*/ 65 + Math.random() * 33);
+          let x_pos = i * 10;
+
+          this.ctx.fillText(text, x_pos, y_pos);
+          this.letters[i] = (y_pos > 758 + Math.random() * 1e4) ? 0 : y_pos + 10;
+        });
+      }
+
+      resetCanvas() {
+        this.canvas.width = document.body.clientWidth;
+        this.canvas.height = document.body.clientHeight;
+        this.ctx.fillStyle = '#000';
+        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+      }
+
+    }
+
+    var matrix = new Matrix(viewStyle);
+  </script>
+</body>
+</html>
