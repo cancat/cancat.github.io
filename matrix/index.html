@@ -38,12 +38,44 @@
 
       bind() {
         window.addEventListener('resize', e => this.reload(), false);
+        window.addEventListener('keyup', e => this.keyup(e), false);
       }
 
       reload() {
         this.resetCanvas();
         this.letters = this.backup.slice(0);
         this.setSpeed();
+      }
+
+      keyup(e) {
+        e.keyCode === 13 ? this.toggleFull(document.documentElement) : void 0;
+      }
+
+      toggleFull(element) {
+        this.isFullScreen ? this.enterFull(element) : this.exitFull();
+        this.isFullScreen = !this.isFullScreen;
+      }
+
+      enterFull(element) {
+        if(element.requestFullscreen) {
+          element.requestFullscreen();
+        } else if(element.mozRequestFullScreen) {
+          element.mozRequestFullScreen();
+        } else if(element.webkitRequestFullscreen) {
+          element.webkitRequestFullscreen();
+        } else if(element.msRequestFullscreen) {
+          element.msRequestFullscreen();
+        }
+      }
+
+      exitFull() {
+        if(document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if(document.mozCancelFullScreen) {
+          document.mozCancelFullScreen();
+        } else if(document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        }
       }
 
       setSpeed(speed) {
