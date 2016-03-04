@@ -14,6 +14,7 @@
 </head>
 <body>
   <canvas id="viewStyle"></canvas>
+  <!-- 加载Traceur编译器 -->
   <script src="http://google.github.io/traceur-compiler/bin/traceur.js"></script>
   <!-- 将Traceur编译器用于网页 -->
   <script src="http://google.github.io/traceur-compiler/src/bootstrap.js"></script>
@@ -25,6 +26,7 @@
         this.ctx = canvas.getContext('2d');
         this.letters = Array(256).join(0).split('');
         this.timer = null;
+        this.pixelRatio = this.getPixelRatio(this.ctx);
 
         this.backup = this.letters.map(function(val) {
           return val = 1 - Math.random() * 1e3;
@@ -58,24 +60,39 @@
       }
 
       draw() {
-        this.ctx.fillStyle = 'rgba(0, 0, 0, .05)';
+        this.ctx.fillStyle = 'rgba(0, 0, 0, .08)';
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.fillStyle = '#0F0';
+        this.ctx.font = `${12 * this.pixelRatio}px sans-serif`;
 
         this.letters.map((y_pos, i) => {
-          let text = String.fromCharCode(/*3e4*/ 65 + Math.random() * 33);
-          let x_pos = i * 10;
+          let text = String.fromCharCode(65 + Math.random() * 33);
+          let x_pos = i * 12 * this.pixelRatio;
 
           this.ctx.fillText(text, x_pos, y_pos);
-          this.letters[i] = (y_pos > 758 + Math.random() * 1e4) ? 0 : y_pos + 10;
+          this.letters[i] = (y_pos > 758 + Math.random() * 1e4) ? 0 : y_pos + 12 * this.pixelRatio;
         });
       }
 
       resetCanvas() {
-        this.canvas.width = document.body.clientWidth;
-        this.canvas.height = document.body.clientHeight;
+        let dWidth = document.body.clientWidth;
+        let dHeight = document.body.clientHeight;
+        this.canvas.width = dWidth * this.pixelRatio;
+        this.canvas.height = dHeight * this.pixelRatio;
         this.ctx.fillStyle = '#000';
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+        this.canvas.style.width = `${dWidth}px`;
+        this.canvas.style.height = `${dHeight}px`;
+      }
+
+      getPixelRatio(context) {
+        let backingStore = context.backingStorePixelRatio ||
+        context.webkitBackingStorePixelRatio ||
+        context.mozBackingStorePixelRatio ||
+        context.msBackingStorePixelRatio ||
+        context.oBackingStorePixelRatio || 1;
+
+        return (window.devicePixelRatio || 1) / backingStore;
       }
 
     }
