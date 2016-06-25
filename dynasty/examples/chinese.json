@@ -61,11 +61,7 @@
       },
       "media": {
         "thumbnail": "images/libai.jpg",
-        "url": "<iframe width=\"600\" height=\"400\" src=\"http://haocong.github.io/flowgallery\"></iframe>"
-      },
-      "background": {
-        "opacity":"50",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/a/ad/Sui_Wendi_Tang.jpg"
+        "url": "<iframe width=\"600\" height=\"400\" src=\"/ccgallery\"></iframe>"
       },
       "text": {
         "headline": "李白",
@@ -81,7 +77,7 @@
       },
       "media": {
         "thumbnail": "images/dufu.jpg",
-        "url": "<iframe width=\"600\" height=\"400\" src=\"http://haocong.github.io/flowgallery\"></iframe>"
+        "url": "<iframe width=\"600\" height=\"400\" src=\"/ccgallery\"></iframe>"
       },
       "text": {
         "headline": "杜甫",
@@ -97,7 +93,7 @@
       },
       "media": {
         "thumbnail": "images/lqz.jpg",
-        "url": "<iframe width=\"600\" height=\"400\" src=\"http://haocong.github.io/flowgallery\"></iframe>"
+        "url": "<iframe width=\"600\" height=\"400\" src=\"/ccgallery\"></iframe>"
       },
       "text": {
         "headline": "李清照",
@@ -113,7 +109,7 @@
       },
       "media": {
         "thumbnail": "images/sushi.jpg",
-        "url": "<iframe width=\"600\" height=\"400\" src=\"http://haocong.github.io/flowgallery\"></iframe>"
+        "url": "<iframe width=\"600\" height=\"400\" src=\"/ccgallery\"></iframe>"
       },
       "text": {
         "headline": "苏轼",
@@ -129,7 +125,7 @@
       },
       "media": {
         "thumbnail": "images/fml.jpg",
-        "url": "<iframe width=\"600\" height=\"400\" src=\"http://haocong.github.io/flowgallery\"></iframe>"
+        "url": "<iframe width=\"600\" height=\"400\" src=\"/ccgallery\"></iframe>"
       },
       "text": {
         "headline": "冯梦龙",
