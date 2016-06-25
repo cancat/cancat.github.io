@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>CCGallery - HTML5 Multimedia Gallery</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700|PT+Sans+Narrow' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="css/League-Gothic/stylesheet.css" />
+	<link rel="stylesheet" href="css/reset.css" />
+	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="css/ccgallery-dark.css" />
+	<link rel="stylesheet" href="mediaelement/mediaelementplayer.min.css" />
+	
+	<!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
+	<![endif]-->
+	
+	
+</head>
+<body>
+	
+	<div id="ccgallery" data-autoplay="true">
+		<menu type="toolbar">
+			<div class="buttonset" id="displayButtons">				
+				<a class="navbuttons" id="gocoverflow">Coverflow</a>
+				<a class="navbuttons active" id="gothumbs">Thumbnails</a>
+			</div>
+			
+			<div class="buttonset" id="sortButtons">
+				<a class="navbuttons active" id="all" data-type="all">All</a>
+				<a class="navbuttons" id="photos" data-type="photo">Photos</a>
+				<a class="navbuttons" id="audios" data-type="audio">Audios</a>
+				<a class="navbuttons" id="videos" data-type="video">Videos</a>
+			</div>
+		</menu>		
+		
+		<section class="displayStyle" id="coverflowGallery">
+			<div id="coverContainer"></div>
+			
+			<div id="scroll-wrap">
+				<a id="next"></a>
+				<div id="scrollbar-track">
+					<a href="#" class="ui-slider-handle"></a>
+				</div>
+				<a id="prev"></a>
+			</div>
+			
+			<div id="listWrapper">
+				<ol id="itemList"></ol>
+			</div>
+		</section>  <!-- end #coverflowGallery -->
+		
+		<section class="displayStyle" id="thumbGallery">
+			<ul></ul>
+		</section>  <!-- end #thumbGallery -->
+	</div>  <!-- end #ccgallery -->
+	
+
+	<script src="js/jquery-1.9.1.min.js"></script>
+	<script src="js/jquery.mousewheel.min.js"></script>
+	<script src="js/jquery-ui-1.10.2.slider.min.js"></script>
+	<script src="js/jquery.ui.touch-punch.min.js"></script>
+	<script src="js/jquery.quicksand.mod.min.js"></script>
+	<script src="mediaelement/mediaelement-and-player.min.js"></script>
+	<script src="js/innershiv.min.js"></script>
+	<script src="js/modernizr.3d.js"></script>
+	<script src="js/jquery.ccgallery.js"></script>
+	<script>
+		$(function() {
+			gallery.init('config.xml')
+		})
+	</script>
+</body>
+</html>

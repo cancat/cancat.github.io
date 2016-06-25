@@ -1,0 +1,741 @@
+
+/************************ Main gallery styling **********************/
+#ccgallery {
+	max-width: 1000px;
+	width: 100%;
+	height: 600px;
+	margin: 10px auto;
+	position: relative;
+	z-index: 0;
+	background: url(../images/loading.gif) center center no-repeat;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	-webkit-touch-callout: none;
+}
+
+/************ Toolbar **************/
+menu {
+	margin: 0 auto;
+	text-align: center;
+}
+
+.buttonset {
+	font: 12px/25px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	color: #fff;
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.9);
+	height: 25px;
+	display: inline-block;
+	zoom: 1; /* IE7 hack for display inline-block */
+	*display: inline;
+	margin: 0 40px 0 0;
+	background-color: #444;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#666666), to(#333333)); /* Saf4+, Chrome */
+	background-image: -webkit-linear-gradient(top, #666666, #333333); /* Chrome 10+, Saf5.1+ */
+	background-image:    -moz-linear-gradient(top, #666666, #333333); /* FF3.6 */
+	background-image:     -ms-linear-gradient(top, #666666, #333333); /* IE10 */
+	background-image:      -o-linear-gradient(top, #666666, #333333); /* Opera 11.10+ */
+	background-image:         linear-gradient(to bottom, #666666, #333333);
+    -pie-background:          linear-gradient(top, #666666, #333333); /* IE6 - IE8 */
+	-moz-border-radius:    5px;
+	-webkit-border-radius: 5px;
+	border-radius:         5px;
+	-moz-box-shadow:    0 1px 2px rgba(0, 0, 0, 0.9);
+	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.9);
+	box-shadow:         0 1px 2px rgba(0, 0, 0, 0.9);
+	behavior: url(PIE.htc);
+}
+
+.buttonset:last-of-type {
+	margin-right: 0;
+}
+
+.navbuttons {
+	float: left;
+	cursor: pointer;
+	padding: 0 10px;
+	border-right: 1px solid #333;
+	border-left: 1px solid #444;
+	-moz-box-shadow:    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+	-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+	box-shadow:         inset 0 1px 0 rgba(255, 255, 255, 0.3);
+	behavior: url(PIE.htc);
+}
+
+.buttonset .navbuttons:first-of-type {
+	border-left: none;
+	-moz-border-radius:    5px 0 0 5px;
+	-webkit-border-radius: 5px 0 0 5px;
+	border-radius:         5px 0 0 5px;
+	behavior: url(PIE.htc);
+}
+
+.buttonset .navbuttons:last-of-type {
+	border-right: none;
+	-moz-border-radius:    0 5px 5px 0;
+	-webkit-border-radius: 0 5px 5px 0;
+	border-radius:         0 5px 5px 0;
+	behavior: url(PIE.htc);
+}
+
+.navbuttons:hover {
+	background-color: #555;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#777777), to(#444444)); /* Saf4+, Chrome */
+	background-image: -webkit-linear-gradient(top, #777777, #444444); /* Chrome 10+, Saf5.1+ */
+	background-image:    -moz-linear-gradient(top, #777777, #444444); /* FF3.6 */
+	background-image:     -ms-linear-gradient(top, #777777, #444444); /* IE10 */
+	background-image:      -o-linear-gradient(top, #777777, #444444); /* Opera 11.10+ */
+	background-image:         linear-gradient(to bottom, #777777, #444444);
+    -pie-background:          linear-gradient(top, #777777, #444444); /* IE6 - IE8 */
+	behavior: url(PIE.htc);
+}
+
+.navbuttons:active, .navbuttons.active {
+	background-color: #333;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#222222), to(#3c3c3c)); /* Saf4+, Chrome */
+	background-image: -webkit-linear-gradient(top, #222222, #3c3c3c); /* Chrome 10+, Saf5.1+ */
+	background-image:    -moz-linear-gradient(top, #222222, #3c3c3c); /* FF3.6 */
+	background-image:     -ms-linear-gradient(top, #222222, #3c3c3c); /* IE10 */
+	background-image:      -o-linear-gradient(top, #222222, #3c3c3c); /* Opera 11.10+ */
+	background-image:         linear-gradient(to bottom, #222222, #3c3c3c);
+    -pie-background:          linear-gradient(top, #222222, #3c3c3c); /* IE6 - IE8 */
+	-moz-box-shadow:    inset 0 -1px 0 rgba(255, 255, 255, 0.3), inset 0 0 2px rgba(0, 0, 0, 0.9);
+	-webkit-box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.3), inset 0 0 2px rgba(0, 0, 0, 0.9);
+	box-shadow:         inset 0 -1px 0 rgba(255, 255, 255, 0.3), inset 0 0 2px rgba(0, 0, 0, 0.9);
+	behavior: url(PIE.htc);
+}
+
+#ccgallery section {
+	width: 100%;
+	margin-top: 40px;
+	display: none;
+}
+
+/************** Thumbnail gallery styling ****************/
+#thumbGallery ul {
+	list-style: none;
+	width: 100%;
+	padding: 10px;
+	overflow: hidden;
+	text-align: center;
+	-moz-box-sizing    : border-box;
+	-webkit-box-sizing : border-box;
+	box-sizing         : border-box;
+}
+
+#thumbGallery li {
+	position: relative;
+	display: inline-block;
+	zoom: 1;
+	*display: inline;
+	vertical-align: top;
+	width: 200px;
+	height: 200px;
+	padding: 10px;
+	margin: 0 20px 20px 0;
+	border: 1px solid #000;
+	text-align: left;
+	background-color: #141414;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#2c2c2c), to(#141414)); /* Saf4+, Chrome */
+	background-image: -webkit-linear-gradient(top, #2c2c2c, #141414); /* Chrome 10+, Saf5.1+ */
+	background-image:    -moz-linear-gradient(top, #2c2c2c, #141414); /* FF3.6 */
+	background-image:     -ms-linear-gradient(top, #2c2c2c, #141414); /* IE10 */
+	background-image:      -o-linear-gradient(top, #2c2c2c, #141414); /* Opera 11.10+ */
+	background-image:         linear-gradient(to bottom, #2c2c2c, #141414);
+	-pie-background:          linear-gradient(top, #2c2c2c, #141414); /* IE6 - IE8 */
+	-moz-border-radius:    5px;
+	-webkit-border-radius: 5px;
+	border-radius:         5px;
+	-moz-box-shadow:    inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 1px 2px rgba(0, 0, 0, 0.9);
+	-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 1px 2px rgba(0, 0, 0, 0.9);
+	box-shadow:         inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 1px 2px rgba(0, 0, 0, 0.9);
+	-moz-background-clip:    padding;
+	-webkit-background-clip: padding-box;
+	background-clip:         padding-box;
+	-moz-transition:    box-shadow 0.4s ease-in-out;
+	-webkit-transition: box-shadow 0.4s ease-in-out;
+	-o-transition:      box-shadow 0.4s ease-in-out;
+	-ms-transition:     box-shadow 0.4s ease-in-out;
+	transition:         box-shadow 0.4s ease-in-out;
+	behavior: url(PIE.htc);
+}
+
+#thumbGallery li:hover {
+	-moz-box-shadow:    inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 0 3px rgba(0, 0, 0, 0.9), 0 0 6px rgba(255, 255, 255, 0.7);
+	-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 0 3px rgba(0, 0, 0, 0.9), 0 0 6px rgba(255, 255, 255, 0.7);
+	box-shadow:         inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 0 3px rgba(0, 0, 0, 0.9), 0 0 6px rgba(255, 255, 255, 0.7);
+}
+
+#thumbGallery img {
+	width: 200px;
+	height: 150px;
+	cursor: pointer;
+	opacity: 0.7;
+	filter: alpha(opacity=70);
+	-moz-transition:    opacity 0.4s ease-in-out;
+	-webkit-transition: opacity 0.4s ease-in-out;
+	-o-transition:      opacity 0.4s ease-in-out;
+	-ms-transition:     opacity 0.4s ease-in-out;
+	transition:         opacity 0.4s ease-in-out;
+}
+
+#thumbGallery img:hover {
+	opacity: 1.0;
+	filter: alpha(opacity=100);
+}
+
+#thumbGallery .details {
+	margin-top: 10px;
+	position: relative;
+}
+
+#thumbGallery li[data-type=photo] .details:before {
+	content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	background: url(../images/camera.png) center center no-repeat;
+	width: 24px;
+	height: 20px;
+}
+
+#thumbGallery li[data-type=audio] .details:before {
+	content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	background: url(../images/audio.png) center center no-repeat;
+	width: 24px;
+	height: 20px;
+}
+
+#thumbGallery li[data-type=video] .details:before {
+	content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	background: url(../images/video.png) center center no-repeat;
+	width: 24px;
+	height: 20px;
+}
+
+#thumbGallery h2 {
+	font: 18px/1 'PT Sans Narrow', Helvetica, Arial, sans-serif;
+	color: #ededed;
+	text-transform: uppercase;
+	width: 176px;
+	height: 21px;
+}
+
+#thumbGallery .description {
+	font: 14px /1.2 'PT Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	color: #999;
+	width: 200px;
+	height: 18px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+}
+
+/**************** Coverflow section styling ***************/
+#coverContainer {
+	max-width: 700px;
+	width: 100%;
+	height: 280px;
+	margin: 0 auto;
+	overflow: hidden;
+	position: relative;
+}
+
+.cwrapper {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+#coverContainer.css3d, .css3d .cwrapper {
+	pointer-events: none;  /* required to fix webkit bug for mouse events on 3d transformed element */
+	-moz-perspective:    600px;
+	-webkit-perspective: 600px;
+	-o-perspective:      600px;
+	-ms-perspective:     600px;
+	perspective:         600px;
+}
+
+.cwrapper canvas {
+	position: absolute;
+	bottom: 0;
+}
+
+.css3d .cwrapper canvas.cover {
+	left: 0;
+	-moz-backface-visibility    : hidden;
+	-webkit-backface-visibility : hidden;
+	-o-backface-visibility      : hidden;
+	-ms-backface-visibility     : hidden;
+	backface-visibility         : hidden;
+	-moz-transition    : left 1600ms cubic-bezier(0.230, 1.000, 0.320, 1.000), -moz-transform 800ms cubic-bezier(0.230, 1.000, 0.320, 1.000);
+	-webkit-transition : left 1600ms cubic-bezier(0.230, 1.000, 0.320, 1.000), -webkit-transform 800ms cubic-bezier(0.230, 1.000, 0.320, 1.000);
+	-o-transition      : left 1600ms cubic-bezier(0.230, 1.000, 0.320, 1.000), -o-transform 800ms cubic-bezier(0.230, 1.000, 0.320, 1.000);
+	-ms-transition     : left 1600ms cubic-bezier(0.230, 1.000, 0.320, 1.000), -ms-transform 800ms cubic-bezier(0.230, 1.000, 0.320, 1.000);
+	transition         : left 1600ms cubic-bezier(0.230, 1.000, 0.320, 1.000), transform 800ms cubic-bezier(0.230, 1.000, 0.320, 1.000);
+}
+
+div.cover {
+	position: absolute;
+	bottom: 0;
+}
+
+div.cover img {
+	display: inline !important;
+	width: 100%;
+	height: 100%;
+}
+
+.coverclick {
+	display: block;
+	position: absolute;
+	bottom: 0;
+	/* Fix for IE to enable click events*/
+	background-color: #000;
+	opacity: 0;
+	filter: alpha(opacity=0.01);
+}
+
+.css3d .coverclick {
+	left: 0;
+	pointer-events: auto;  /* fixes webkit bug for mouse events on 3d transformed element */
+	-moz-backface-visibility    : hidden;
+	-webkit-backface-visibility : hidden;
+	-o-backface-visibility      : hidden;
+	-ms-backface-visibility     : hidden;
+	backface-visibility         : hidden;
+}
+
+.coverclick.active {
+	cursor: pointer;
+}
+
+#coverTitle {
+	font: bold 14px 'PT Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	color: #fff;
+	text-align: center;
+	width: 100%;
+	height: 14px;
+	position: absolute;
+	left: 0;
+	bottom: 20px;
+}
+
+/**** Scroll bar styling ****/
+#scroll-wrap {
+	width: 372px;
+	height: 17px;
+	margin: 20px auto 0 auto;
+	background: url(../images/scrollbar-track.png) no-repeat;
+	position: relative;
+}
+
+#prev {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 15px;
+	height: 17px;
+	cursor: pointer;
+}
+
+#next {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 15px;
+	height: 17px;
+	cursor: pointer;
+}
+
+#scrollbar-track {
+	width: 342px;
+	height: 17px;
+	margin: 0 auto;
+	position: relative;
+}
+
+.ui-slider-handle {
+	width: 102px;
+	height: 17px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	margin-left: -51px;
+	cursor: default;
+	outline: none;
+	background: url(../images/scrollbar-handle.png) no-repeat;
+}
+
+.ui-handle-helper-parent {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	margin: 0 auto;
+}
+
+/***** Coverflow section list styling *****/
+#listWrapper {
+	max-width: 700px;
+	width: 100%;
+	padding: 20px 20px 20px 40px;
+	margin: 40px auto 0 auto;
+	border: 1px solid #000;
+	-moz-box-sizing    : border-box;
+	-webkit-box-sizing : border-box;
+	box-sizing         : border-box;
+	background-color: #141414;
+	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #444444),color-stop(70px, #222222),color-stop(1, #141414)); /* Saf4+, Chrome */
+	background-image: -webkit-linear-gradient(top, #444444 0, #222222 70px, #141414 100%); /* Chrome 10+, Saf5.1+ */
+	background-image:    -moz-linear-gradient(top, #444444 0, #222222 70px, #141414 100%); /* FF3.6 */
+	background-image:     -ms-linear-gradient(top, #444444 0, #222222 70px, #141414 100%); /* IE10 */
+	background-image:      -o-linear-gradient(top, #444444 0, #222222 70px, #141414 100%); /* Opera 11.10+ */
+	background-image:         linear-gradient(to bottom, #444444 0, #222222 70px, #141414 100%);
+	-pie-background:          linear-gradient(top, #444444 0, #222222 70px, #141414 100%); /* IE6 - IE8 */
+	-moz-border-radius:    5px;
+	-webkit-border-radius: 5px;
+	border-radius:         5px;
+	-moz-box-shadow:    inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 1px 2px rgba(0, 0, 0, 0.9);
+	-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 1px 2px rgba(0, 0, 0, 0.9);
+	box-shadow:         inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 1px 2px rgba(0, 0, 0, 0.9);
+	-moz-background-clip:    padding;
+	-webkit-background-clip: padding-box;
+	background-clip:         padding-box;
+	behavior: url(PIE.htc);
+}
+
+#itemList {
+	font: 12px/24px 'PT Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	color: #aaa;
+}
+
+#itemList li {
+	position: relative;
+	width: 100%;
+	height: 24px;
+	padding: 0 10px;
+	margin-bottom: 10px;
+	-moz-box-sizing    : border-box;
+	-webkit-box-sizing : border-box;
+	box-sizing         : border-box;
+	-moz-border-radius:    3px;
+	-webkit-border-radius: 3px;
+	border-radius:         3px;
+	-moz-background-clip:    padding;
+	-webkit-background-clip: padding-box;
+	background-clip:         padding-box;
+	behavior: url(PIE.htc);
+}
+
+#itemList li:last-child {
+	margin-bottom: 0;
+}
+
+#itemList li:hover {
+	background-color: #666;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#888888), to(#444444)); /* Saf4+, Chrome */
+	background-image: -webkit-linear-gradient(top, #888888, #444444); /* Chrome 10+, Saf5.1+ */
+	background-image:    -moz-linear-gradient(top, #888888, #444444); /* FF3.6 */
+	background-image:     -ms-linear-gradient(top, #888888, #444444); /* IE10 */
+	background-image:      -o-linear-gradient(top, #888888, #444444); /* Opera 11.10+ */
+	background-image:         linear-gradient(to bottom, #888888, #444444);
+	-pie-background:          linear-gradient(top, #888888, #444444); /* IE6 - IE8 */
+	-moz-box-shadow:    inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 1px 1px rgba(0, 0, 0, 0.9);
+	-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 1px 1px rgba(0, 0, 0, 0.9);
+	box-shadow:         inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 1px 1px rgba(0, 0, 0, 0.9);
+}
+
+#itemList li.active {
+	cursor: pointer;
+	background-color: #06a;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#0085dd), to(#002944)); /* Saf4+, Chrome */
+	background-image: -webkit-linear-gradient(top, #0085dd, #002944); /* Chrome 10+, Saf5.1+ */
+	background-image:    -moz-linear-gradient(top, #0085dd, #002944); /* FF3.6 */
+	background-image:     -ms-linear-gradient(top, #0085dd, #002944); /* IE10 */
+	background-image:      -o-linear-gradient(top, #0085dd, #002944); /* Opera 11.10+ */
+	background-image:         linear-gradient(to bottom, #0085dd, #002944);
+	-pie-background:          linear-gradient(top, #0085dd, #002944); /* IE6 - IE8 */
+	-moz-box-shadow:    inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 1px 1px rgba(0, 0, 0, 0.9);
+	-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 1px 1px rgba(0, 0, 0, 0.9);
+	box-shadow:         inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 1px 1px rgba(0, 0, 0, 0.9);
+}
+
+#itemList li[data-type=photo]:before {
+	content: '';
+	display: block;
+	position: absolute;
+	width: 24px;
+	height: 24px;
+	left: 10px;
+	top: 0;
+	background: url(../images/camera.png) center center no-repeat;
+}
+
+#itemList li[data-type=audio]:before {
+	content: '';
+	display: block;
+	position: absolute;
+	width: 24px;
+	height: 24px;
+	left: 10px;
+	top: 0;
+	background: url(../images/audio.png) center center no-repeat;
+}
+
+#itemList li[data-type=video]:before {
+	content: '';
+	display: block;
+	position: absolute;
+	width: 24px;
+	height: 24px;
+	left: 10px;
+	top: 0;
+	background: url(../images/video.png) center center no-repeat;
+}
+
+#itemList .details {
+	display: inline-block;
+	zoom: 1;
+	*display: inline;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	vertical-align: top;
+}
+
+#itemList li h2 {
+	font-weight: bold;
+	font-size: 14px;
+	color: #ededed;
+	display: inline;
+	margin-left: 39px;
+}
+
+#itemList li .description {
+	color: #ccc;
+	display: inline;
+}
+
+#itemList li .description:before {
+	content: '\00A0 \00A0 \2014 \00A0 \00A0';
+}
+
+/****************** Overlay styling ****************/
+#mask {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 999;
+	background: #141414;   /* fallback */
+	background: rgba(0, 0, 0, 0.7);
+	-pie-background: rgba(0, 0, 0, 0.7);
+	width: 100%;
+	display: none;
+	behavior: url(PIE.htc);
+}
+
+#overlayLoader {
+	position: absolute;
+	z-index: 1000;
+	left: 50%;
+	margin: -30px 0 0 -30px;
+	width: 60px;
+	height: 60px;
+	background: #242424 url(../images/loading.gif) center center no-repeat;
+	border: 1px solid #ccc;
+	display: none;
+	-moz-border-radius:    8px;
+	-webkit-border-radius: 8px;
+	border-radius:         8px;
+	-moz-background-clip:    padding;
+	-webkit-background-clip: padding-box;
+	background-clip:         padding-box;
+	behavior: url(PIE.htc);
+}
+
+#overlay {
+	position: absolute;
+	z-index: 1001;
+	left: 50%;
+	padding: 20px;
+	background-color: #252829;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#252829), to(#51585B)); /* Saf4+, Chrome */
+	background-image: -webkit-linear-gradient(top, #252829, #51585B); /* Chrome 10+, Saf5.1+ */
+	background-image:    -moz-linear-gradient(top, #252829, #51585B); /* FF3.6 */
+	background-image:     -ms-linear-gradient(top, #252829, #51585B); /* IE10 */
+	background-image:      -o-linear-gradient(top, #252829, #51585B); /* Opera 11.10+ */
+	background-image:         linear-gradient(to bottom, #252829, #51585B);
+	-pie-background:          linear-gradient(#252829, #51585B); /* IE6 - IE8 */
+	display: none;
+	-moz-border-radius:    5px;
+	-webkit-border-radius: 5px;
+	border-radius:         5px;
+	-moz-background-clip:    padding;
+	-webkit-background-clip: padding-box;
+	background-clip:         padding-box;
+	behavior: url(PIE.htc);
+}
+
+#overlayContent {
+	width: 100%;
+	height: 100%;
+	margin: 0 auto;
+	position: relative;
+	display: none;
+}
+
+#close {
+	position: absolute;
+	top: -15px;
+	right: -15px;
+	width: 36px;
+	height: 36px;
+	display: block;
+	cursor: pointer;
+	background: url(../images/close.png) no-repeat;
+}
+
+#overlayContent .details {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+}
+
+#overlayContent h2 {
+	font: 30px 'League Gothic', Helvetica, Arial, sans-serif;
+	color: #ededed;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+}
+
+#overlayContent p {
+	font: 14px 'PT Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	color: #ccc;
+	margin-top: 5px;
+}
+
+#next-item, #prev-item {
+	position: absolute;
+	display: block;
+	width: 35px;
+	height: 34px;
+	cursor: pointer;
+	top: 50%;
+	margin-top: -17px;
+}
+
+#next-item {
+	background: url(../images/right-arrow.png) no-repeat;
+	right: 0;
+	margin-right: -17px;
+}
+
+#prev-item {
+	background: url(../images/left-arrow.png) no-repeat;
+	left: 0;
+	margin-left: -17px;
+}
+
+
+
+/**** Making the gallery responsive ***/
+/*@media only screen and (max-width : 1000px),
+only screen and (max-device-width : 1000px) {
+	#ccgallery {
+		width: 746px;
+	}
+
+	#thumbGallery ul {
+		width: 726px;
+	}
+}
+
+@media only screen and (max-width : 746px),
+only screen and (max-device-width : 746px) {
+	#ccgallery {
+		width: 504px;
+	}
+
+	#thumbGallery ul {
+		width: 484px;
+	}
+
+	#coverContainer {
+		width: 100%;
+	}
+
+	#listWrapper {
+		width: 442px;
+	}
+
+	#itemList li {
+		width: 422px;
+	}
+}
+
+@media only screen and (max-width : 504px),
+only screen and (max-device-width : 504px) {
+	#ccgallery {
+		width: 480px;
+	}
+
+	#thumbGallery ul {
+		width: 242px;
+		margin: 0 auto;
+	}
+
+	#listWrapper {
+		width: 418px;
+	}
+
+	#itemList li {
+		width: 398px;
+	}
+}*/
+
+@media only screen and (max-width : 480px),
+only screen and (max-device-width : 480px) {
+	/*#ccgallery {
+		width: 372px;
+	}
+
+	#listWrapper {
+		width: 310px;
+	}
+
+	#itemList li {
+		width: 290px;
+	}*/
+
+	#itemList li .description {
+		display: none;
+	}
+}
+
+@media only screen and (max-width : 372px),
+only screen and (max-device-width : 372px) {
+	/*#ccgallery {
+		width: 320px;
+	}
+
+	#listWrapper {
+		width: 258px;
+	}
+
+	#itemList li {
+		width: 238px;
+	}*/
+
+	#itemList li .description, #scroll-wrap, canvas.fade {
+		display: none;
+	}
+}

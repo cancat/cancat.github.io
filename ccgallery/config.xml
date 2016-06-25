@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CCGallery>
+	<file type="photo">
+		<cover>media/photos/covers/photo-cover1.jpg</cover>
+		<thumb>media/photos/thumbs/photo-thumb1.jpg</thumb>
+		<source>media/photos/scenery.jpg</source>
+		<title>Photo example</title>
+		<description>A short description of the photo</description>
+	</file>
+
+	<file type="audio">
+		<cover>media/audios/covers/audio-cover1.jpg</cover>
+		<thumb>media/audios/thumbs/audio-thumb1.jpg</thumb>
+		<source>media/audios/symphony-9.ogg</source>
+		<source>media/audios/symphony-9.mp3</source>
+		<title>Audio example</title>
+		<description>A short description of the audio piece</description>
+	</file>
+
+	<file type="photo">
+		<cover>media/photos/covers/photo-cover2.jpg</cover>
+		<thumb>media/photos/thumbs/photo-thumb2.jpg</thumb>
+		<source>media/photos/scenery.jpg</source>
+		<title>Photo example</title>
+		<description>A short description of the photo</description>
+	</file>
+
+	<file type="video">
+		<cover>media/videos/covers/video-cover1.jpg</cover>
+		<thumb>media/videos/thumbs/video-thumb1.jpg</thumb>
+		<source>media/videos/quintet.mp4</source>
+		<source>media/videos/quintet.webm</source>
+		<source>media/videos/quintet.ogv</source>
+		<title>Video example</title>
+		<description>A short description of the video clip</description>
+	</file>
+
+	<file type="audio">
+		<cover>media/audios/covers/audio-cover2.jpg</cover>
+		<thumb>media/audios/thumbs/audio-thumb2.jpg</thumb>
+		<source>media/audios/symphony-9.ogg</source>
+		<source>media/audios/symphony-9.mp3</source>
+		<title>Audio example</title>
+		<description>A short description of the audio piece</description>
+	</file>
+
+	<file type="photo">
+		<cover>media/photos/covers/photo-cover3.jpg</cover>
+		<thumb>media/photos/thumbs/photo-thumb3.jpg</thumb>
+		<source>media/photos/scenery.jpg</source>
+		<title>Photo example</title>
+		<description>A short description of the photo</description>
+	</file>
+
+	<file type="video">
+		<cover>media/videos/covers/video-cover2.jpg</cover>
+		<thumb>media/videos/thumbs/video-thumb2.jpg</thumb>
+		<source>http://www.youtube.com/watch?v=-61z3ZlFnpQ</source>
+		<title>Video example</title>
+		<description>A short description of the video clip</description>
+	</file>
+
+	<file type="audio">
+		<cover>media/audios/covers/audio-cover3.jpg</cover>
+		<thumb>media/audios/thumbs/audio-thumb3.jpg</thumb>
+		<source>media/audios/symphony-9.ogg</source>
+		<source>media/audios/symphony-9.mp3</source>
+		<title>Audio example</title>
+		<description>A short description of the audio piece</description>
+	</file>
+
+	<file type="photo">
+		<cover>media/photos/covers/photo-cover4.jpg</cover>
+		<thumb>media/photos/thumbs/photo-thumb4.jpg</thumb>
+		<source>media/photos/scenery.jpg</source>
+		<title>Photo example</title>
+		<description>A short description of the photo</description>
+	</file>
+
+	<file type="audio">
+		<cover>media/audios/covers/audio-cover4.jpg</cover>
+		<thumb>media/audios/thumbs/audio-thumb4.jpg</thumb>
+		<source>media/audios/symphony-9.ogg</source>
+		<source>media/audios/symphony-9.mp3</source>
+		<title>Audio example</title>
+		<description>A short description of the audio piece</description>
+	</file>
+
+	<file type="video">
+		<cover>media/videos/covers/video-cover3.jpg</cover>
+		<thumb>media/videos/thumbs/video-thumb3.jpg</thumb>
+		<source>media/videos/quintet.mp4</source>
+		<source>media/videos/quintet.webm</source>
+		<source>media/videos/quintet.ogv</source>
+		<title>Video example</title>
+		<description>A short description of the video clip</description>
+	</file>
+
+	<file type="video">
+		<cover>media/videos/covers/video-cover4.jpg</cover>
+		<thumb>media/videos/thumbs/video-thumb4.jpg</thumb>
+		<source>media/videos/quintet.mp4</source>
+		<source>media/videos/quintet.webm</source>
+		<source>media/videos/quintet.ogv</source>
+		<title>Video example</title>
+		<description>A short description of the video clip</description>
+	</file>
+</CCGallery>

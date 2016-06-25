@@ -1,0 +1,29 @@
+
+body {
+	background: #242424;
+	overflow-y: scroll;
+}
+
+/**************** Title header ********************/
+header {
+	margin-top: 40px;
+}
+
+header h1 {
+	font: 70px 'League Gothic', Helvetica, Arial, sans-serif;
+	text-align: center;
+	color: #fff;
+	letter-spacing: 2px;
+}
+
+header h2 {
+	font: 30px 'League Gothic', Helvetica, Arial, sans-serif;
+	text-align: center;
+	letter-spacing: 2px;
+	color: #666;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+menu {
+	display: none;
+}
