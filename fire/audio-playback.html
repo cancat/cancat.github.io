@@ -1,0 +1,81 @@
+<link rel="import" href="http://polygit.org/components/iron-icons/av-icons.html">
+<dom-module id="audio-playback">
+  <template>
+    <style is="custom-style">
+      :host {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 100%;
+        --iron-icon-fill-color: #fff;
+        --iron-icon-height: 40px;
+        --iron-icon-width: 40px;
+      }
+      [hidden] {
+        display: none !important;
+      }
+      .cover {
+        background: #d8b3b3;
+        width: 100%;
+        height: 100%;
+        box-shadow: 0 0 2px rgba(0,0,0,.2);
+        @apply(--layout-horizontal);
+        @apply(--layout-center-center);
+      }
+      .icon {
+        cursor: pointer;
+      }
+      .progress {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 2px;
+        background: #672f2f;
+      }
+    </style>
+    <div class="cover">
+      <div class="icon" on-click="play">
+        <iron-icon icon="[[_computeIcon(isPlaying)]]"></iron-icon>
+      </div>
+    </div>
+    <div class="progress" style="[[_computeProgressWidth(progress)]]"></div>
+    <audio id="audio" on-timeupdate="_timeUpdate" on-ended="_playEnded" hidden><source src="[[src]]" type="[[type]]"></audio>
+  </template>
+  <script>
+    Polymer({
+      is: 'audio-playback',
+      properties: {
+        src: String,
+        type: String,
+        isPlaying: {
+          type: Boolean,
+          value: false
+        },
+        progress: {
+          type: Number,
+          value: 0
+        }
+      },
+      play: function() {
+        this.isPlaying ? this.$.audio.pause() : this.$.audio.play();
+        this.isPlaying = !this.isPlaying
+      },
+      _computeIcon: function(isPlaying) {
+        return isPlaying ? 'av:pause-circle-outline' : 'av:play-circle-outline';
+      },
+      _computeProgressWidth: function(progress) {
+        return 'width: ' + progress + '%';
+      },
+      _timeUpdate: function() {
+        var audio = this.$.audio;
+        if (audio.currentTime > 0) {
+          this.progress = Math.floor((100 / audio.duration) * audio.currentTime);
+        }
+      },
+      _playEnded: function() {
+        this.progress = 0;
+        this.isPlaying = false;
+      }
+    });
+  </script>
+</dom-module>

@@ -1,0 +1,89 @@
+{
+  "CCGallery":{
+    "file":[{
+      "cover":"media/photos/covers/photo-cover1.jpg",
+      "thumb":"media/photos/thumbs/photo-thumb1.jpg",
+      "source":"media/photos/scenery.jpg",
+      "title":"Photo example",
+      "description":"A short description of the photo",
+      "_type":"photo"
+    },{
+      "cover":"media/audios/covers/audio-cover1.jpg",
+      "thumb":"media/audios/thumbs/audio-thumb1.jpg",
+      "source":["https://firebasestorage.googleapis.com/v0/b/timeline-b2597.appspot.com/o/audios%2Fsymphony-9.ogg?alt=media&token=88806525-3f29-4e68-8edc-96ade8029487"],
+      "title":"Audio example",
+      "description":"A short description of the audio piece",
+      "_type":"audio"
+    },{
+      "cover":"media/photos/covers/photo-cover2.jpg",
+      "thumb":"media/photos/thumbs/photo-thumb2.jpg",
+      "source":"media/photos/scenery.jpg",
+      "title":"Photo example",
+      "description":"A short description of the photo",
+      "_type":"photo"
+    },{
+      "cover":"media/videos/covers/video-cover1.jpg",
+      "thumb":"media/videos/thumbs/video-thumb1.jpg",
+      "source":["media/videos/quintet.mp4","media/videos/quintet.webm","media/videos/quintet.ogv"],
+      "title":"Video example",
+      "description":"A short description of the video clip",
+      "_type":"video"
+    },{
+      "cover":"media/audios/covers/audio-cover2.jpg",
+      "thumb":"media/audios/thumbs/audio-thumb2.jpg",
+      "source":["media/audios/symphony-9.ogg","media/audios/symphony-9.mp3"],
+      "title":"Audio example",
+      "description":"A short description of the audio piece",
+      "_type":"audio"
+    },{
+      "cover":"media/photos/covers/photo-cover3.jpg",
+      "thumb":"media/photos/thumbs/photo-thumb3.jpg",
+      "source":"media/photos/scenery.jpg",
+      "title":"Photo example",
+      "description":"A short description of the photo",
+      "_type":"photo"
+    },{
+      "cover":"media/videos/covers/video-cover2.jpg",
+      "thumb":"media/videos/thumbs/video-thumb2.jpg",
+      "source":"http://www.youtube.com/watch?v=-61z3ZlFnpQ",
+      "title":"Video example",
+      "description":"A short description of the video clip",
+      "_type":"video"
+    },{
+      "cover":"media/audios/covers/audio-cover3.jpg",
+      "thumb":"media/audios/thumbs/audio-thumb3.jpg",
+      "source":["media/audios/symphony-9.ogg","media/audios/symphony-9.mp3"],
+      "title":"Audio example",
+      "description":"A short description of the audio piece",
+      "_type":"audio"
+    },{
+      "cover":"media/photos/covers/photo-cover4.jpg",
+      "thumb":"media/photos/thumbs/photo-thumb4.jpg",
+      "source":"media/photos/scenery.jpg",
+      "title":"Photo example",
+      "description":"A short description of the photo",
+      "_type":"photo"
+    },{
+      "cover":"media/audios/covers/audio-cover4.jpg",
+      "thumb":"media/audios/thumbs/audio-thumb4.jpg",
+      "source":["media/audios/symphony-9.ogg","media/audios/symphony-9.mp3"],
+      "title":"Audio example",
+      "description":"A short description of the audio piece",
+      "_type":"audio"
+    },{
+      "cover":"media/videos/covers/video-cover3.jpg",
+      "thumb":"media/videos/thumbs/video-thumb3.jpg",
+      "source":["media/videos/quintet.mp4","media/videos/quintet.webm","media/videos/quintet.ogv"],
+      "title":"Video example",
+      "description":"A short description of the video clip",
+      "_type":"video"
+    },{
+      "cover":"media/videos/covers/video-cover4.jpg",
+      "thumb":"media/videos/thumbs/video-thumb4.jpg",
+      "source":["media/videos/quintet.mp4","media/videos/quintet.webm","media/videos/quintet.ogv"],
+      "title":"Video example",
+      "description":"A short description of the video clip",
+      "_type":"video"
+    }]
+  }
+}

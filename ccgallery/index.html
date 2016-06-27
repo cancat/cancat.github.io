@@ -18,7 +18,6 @@
 		<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
 	<![endif]-->
 
-
 </head>
 <body>
 
@@ -58,7 +57,7 @@
 		</section>  <!-- end #thumbGallery -->
 	</div>  <!-- end #ccgallery -->
 
-
+  <script src="js/xml2json.min.js"></script>
 	<script src="js/jquery-1.9.1.min.js"></script>
 	<script src="js/jquery.mousewheel.min.js"></script>
 	<script src="js/jquery-ui-1.10.2.slider.min.js"></script>
@@ -68,10 +67,28 @@
 	<script src="js/innershiv.min.js"></script>
 	<script src="js/modernizr.3d.js"></script>
 	<script src="js/jquery.ccgallery.js"></script>
+  <script src="js/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyAITcs3QtDzhSAArynbVr0WZ9cFS86X3oM",
+      authDomain: "timeline-b2597.firebaseapp.com",
+      databaseURL: "https://timeline-b2597.firebaseio.com",
+      storageBucket: "timeline-b2597.appspot.com",
+    };
+    firebase.initializeApp(config);
+  </script>
 	<script>
-		$(function() {
-			gallery.init('config.xml')
-		})
+    var id = window.location.hash.substr(2)
+    var config = {
+      CCGallery: {
+        file: []
+      }
+    }
+    firebase.database().ref(id).once('value').then(function(snapshot) {
+      config.CCGallery.file = snapshot.val().files;
+      gallery.init(config)
+    });
 	</script>
 </body>
 </html>

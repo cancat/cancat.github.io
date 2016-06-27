@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>timeline upload</title>
+  <link rel="stylesheet" href="main.css">
+  <link rel="import" href="http://polygit.org/components/polymer/polymer.html">
+  <link rel="import" href="elements.html">
+</head>
+<body>
+<p><label>人物名称：</label><input type="text" id="name" required></p>
+<p><label>人物介绍：</label><textarea id="profile" rows="10" cols="50" required></textarea></p>
+<p><label>生卒年份：</label><input type="text" placeholder="453" required id="start_date"> - <input type="text" placeholder="501" id="end_date"></p>
+<p>
+  <label>上传资源：</label>
+  <input type="file" id="input" onchange="upload()"><span id="progress"></span><br>
+  <ul class="preview"></ul>
+</p>
+<p><button type="button" onclick="submit()">提交</button></p>
+<script src="firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAITcs3QtDzhSAArynbVr0WZ9cFS86X3oM",
+    authDomain: "timeline-b2597.firebaseapp.com",
+    databaseURL: "https://timeline-b2597.firebaseio.com",
+    storageBucket: "timeline-b2597.appspot.com",
+  };
+  firebase.initializeApp(config);
+</script>
+<script src="main.js"></script>
+</body>
+</html>

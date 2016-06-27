@@ -1,0 +1,86 @@
+<link rel="import" href="http://polygit.org/components/iron-icons/av-icons.html">
+<dom-module id="video-playback">
+  <template>
+    <style is="custom-style">
+      :host {
+        position: relative;
+        display: block;
+        height: 100%;
+        --iron-icon-fill-color: #fff;
+        --iron-icon-height: 40px;
+        --iron-icon-width: 40px;
+      }
+      .cover {
+        background: #000;
+        height: 100%;
+        box-shadow: 0 0 2px rgba(0,0,0,.2);
+        @apply(--layout-horizontal);
+        @apply(--layout-center-center);
+      }
+      .icon {
+        cursor: pointer;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-20px, -20px);
+        z-index: 1;
+        opacity: 0;
+        transition: 0.3s ease opacity;
+      }
+      .icon:hover {
+        opacity: 1;
+      }
+      .progress {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 2px;
+        background: #cc181e;
+      }
+    </style>
+    <div class="cover">
+      <div class="icon" on-click="play">
+        <iron-icon icon="[[_computeIcon(isPlaying)]]"></iron-icon>
+      </div>
+      <video id="video" on-timeupdate="_timeUpdate" on-ended="_playEnded"><source src="[[src]]" type="[[type]]"></video>
+    </div>
+    <div class="progress" style="[[_computeProgressWidth(progress)]]"></div>
+  </template>
+  <script>
+    Polymer({
+      is: 'video-playback',
+      properties: {
+        src: String,
+        type: String,
+        isPlaying: {
+          type: Boolean,
+          value: false
+        },
+        progress: {
+          type: Number,
+          value: 0
+        }
+      },
+      play: function() {
+        this.isPlaying ? this.$.video.pause() : this.$.video.play();
+        this.isPlaying = !this.isPlaying
+      },
+      _computeIcon: function(isPlaying) {
+        return isPlaying ? 'av:pause-circle-outline' : 'av:play-circle-outline';
+      },
+      _computeProgressWidth: function(progress) {
+        return 'width: ' + progress + '%';
+      },
+      _timeUpdate: function() {
+        var video = this.$.video;
+        if (video.currentTime > 0) {
+          this.progress = Math.floor((100 / video.duration) * video.currentTime);
+        }
+      },
+      _playEnded: function() {
+        this.progress = 0;
+        this.isPlaying = false;
+      }
+    });
+  </script>
+</dom-module>

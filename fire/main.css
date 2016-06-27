@@ -1,0 +1,35 @@
+html, body {
+  font-family: "helvetica neue", tahoma, sans-serif;
+  font-size: 14px;
+}
+
+label {
+  vertical-align: top;
+}
+
+input[type="text"], textarea {
+  border: 1px solid #ccc;
+}
+
+#progress {
+  font-size: 12px;
+  margin-left: 10px;
+}
+
+.preview {
+  list-style: none;
+  padding: 0;
+}
+
+.preview li {
+  display: inline-block;
+  margin: 5px;
+  min-width: 100px;
+  height: 100px;
+  vertical-align: top;
+}
+
+.preview li img,
+.preview li video {
+  height: 100%;
+}

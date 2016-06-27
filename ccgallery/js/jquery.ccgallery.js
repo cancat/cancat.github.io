@@ -18,7 +18,7 @@ jQuery(function($){
 		storeVolume       = $ccgallery.data('storeVolume') === true ? true : false,
 		newWindowLinks    = $ccgallery.data('newWindowLinks') === true ? true : false;
 
-	function init(url) {
+	function init(config) {
 		// First check if mobile devices are to be detected and if yes serve them an alternate xml file
 		if( $ccgallery.data('mobile') === true ) {
 			$.ajax({
@@ -29,25 +29,36 @@ jQuery(function($){
 					if( data === 'true') {
 						xmlFile = 'config-mobile.xml';
 					}
-					getConfig(url);
+          if (typeof config == 'string') {
+            getConfig(config);
+          } else if (typeof config == 'object') {
+            var x2js = new X2JS();
+            ccgalleryCreate( $(x2js.json2xml(config)) );
+          }
 				}
 			});
 		}
 		else {
-			getConfig(url);
+      if (typeof config == 'string') {
+        getConfig(config);
+      } else if (typeof config == 'object') {
+        var x2js = new X2JS();
+        ccgalleryCreate( $(x2js.json2xml(config)) );
+      }
 		}
 	}
 
 
 
 	// function to retrieve gallery details from the appropriate xml file
-	function getConfig(url) {
+	function getConfig(config) {
 		$.ajax({
 			type: 'GET',
-			url: url,
-			dataType: 'xml',
+			url: config,
+			dataType: 'json',
 			success: function(data){
-				ccgalleryCreate( $(data) );
+        var x2js = new X2JS();
+				ccgalleryCreate( $(x2js.json2xml(data)) );
 			}
 		});
 	}
@@ -972,10 +983,10 @@ jQuery(function($){
 						var filePath = sources.eq(i).text(),
 							fileExt = filePath.split('.').pop();
 
-						if( fileExt === 'ogg' ) {
+						if( fileExt.match(/^ogg/)) {
 							audio += '<source type="audio/ogg" src="'+ filePath +'" />';
 						}
-						else if( fileExt === 'mp3' ) {
+						else if( fileExt.match(/^mp3/) ) {
 							audio += '<source type="audio/mpeg" src="'+ filePath +'" />';
 							safariAudio += 'type="audio/mpeg" src="'+ filePath +'"></audio>';
 						}
@@ -1027,15 +1038,15 @@ jQuery(function($){
 							var filePath = sources.eq(i).text(),
 							fileExt = filePath.split('.').pop();
 
-							if( fileExt === 'mp4' ) {
+							if( fileExt.match(/^mp4/) ) {
 								video += '<source type="video/mp4" src="'+ filePath +'" />';
 								safariVideo += 'type="video/mp4" src="'+ filePath +'"></video>';
 							}
-							else if( fileExt === 'webm' ) {
+							else if( fileExt.match(/^webm/) ) {
 								video += '<source type="video/webm" src="'+ filePath +'" />';
 							}
-							else if( fileExt === 'ogv' ) {
-								video += '<source type="video/ogg" src="'+ filePath +'" />';
+							else if( fileExt.match(/^ogv/) ) {
+								video += '<source type="video/ogv" src="'+ filePath +'" />';
 							}
 						}
 
@@ -1106,7 +1117,10 @@ jQuery(function($){
 						if( ccAutoplay ) {  // if autoplay option is chosen
 							mediaElement.play();
 						}
-					}
+					},
+          error: function(err) {
+            console.log(err)
+          }
 				});
 			});
 		}
@@ -1289,7 +1303,7 @@ function Plane(width, height, focalLength, ctx, color, bgcolor, img, noReflectio
 	//coordinates of the vertices
 	this.vertexPoints = [
 		make3DPoint(-this.width/2, this.height/2, 0),
-		make3DPoint(this.width/2, this.height/2, 0), 
+		make3DPoint(this.width/2, this.height/2, 0),
 		make3DPoint(this.width/2, -this.height/2, 0),
 		make3DPoint(-this.width/2, -this.height/2, 0)
 	];
@@ -1405,7 +1419,7 @@ function Transform3DTo2D(points, axisRotations, position, focalLength, centerx, 
 		scaleFactor = focalLength/(focalLength + z);
 		x = x*scaleFactor + centerx;
 		y = -(y*scaleFactor) + centery;
-		
+
 		TransformedPoints[i] = {x: x, y: y};
 	}
 	return TransformedPoints;
@@ -1419,9 +1433,9 @@ function Transform3DTo2D(points, axisRotations, position, focalLength, centerx, 
  * (c) Steven Wittens 2008
  * http://www.acko.net/
  */
- 
+
 /*
- * Modified by Nilok Bose, (c) 2011   
+ * Modified by Nilok Bose, (c) 2011
  * http://codecanyon.net/user/cosmocoder
  */
 
@@ -1429,19 +1443,19 @@ function Transform3DTo2D(points, axisRotations, position, focalLength, centerx, 
 /**
  * Update the display to match a new point configuration.
  */
-function mapTexture(ctx, points, img) {   
+function mapTexture(ctx, points, img) {
   var subdivisionLimit = 5,
 	  patchSize = 28,
 	  transform = getProjectiveTransform(points);
- 
+
   var ptl = transform.transformProjectiveVector([0, 0, 1]),
 	  ptr = transform.transformProjectiveVector([1, 0, 1]),
 	  pbl = transform.transformProjectiveVector([0, 1, 1]),
 	  pbr = transform.transformProjectiveVector([1, 1, 1]);
 
-  
-  ctx.save();  
-  
+
+  ctx.save();
+
   ctx.beginPath();
   ctx.moveTo(ptl[0], ptl[1]);
   ctx.lineTo(ptr[0], ptr[1]);
@@ -1450,8 +1464,8 @@ function mapTexture(ctx, points, img) {
   ctx.closePath();
   ctx.clip();
 
-  divide(0, 0, 1, 1, ptl, ptr, pbl, pbr, transform, subdivisionLimit, patchSize, ctx, img);  
- 
+  divide(0, 0, 1, 1, ptl, ptr, pbl, pbr, transform, subdivisionLimit, patchSize, ctx, img);
+
   ctx.restore();
 }
 
@@ -1463,20 +1477,20 @@ function divide(u1, v1, u4, v4, p1, p2, p3, p4, transform, limit, patchSize, ctx
 	  Mathmax = Math.max,
 	  Mathmin = Math.min,
 	  Mathsqrt = Math.sqrt;
-  
-  
-  if (limit) {    
+
+
+  if (limit) {
     var d1 = [p2[0] + p3[0] - 2 * p1[0], p2[1] + p3[1] - 2 * p1[1]],
         d2 = [p2[0] + p3[0] - 2 * p4[0], p2[1] + p3[1] - 2 * p4[1]],
         d3 = [d1[0] + d2[0], d1[1] + d2[1]],
         r = Mathabs((d3[0] * d3[0] + d3[1] * d3[1]) / (d1[0] * d2[0] + d1[1] * d2[1]));
-    
+
     d1 = [p2[0] - p1[0] + p4[0] - p3[0], p2[1] - p1[1] + p4[1] - p3[1]];
     d2 = [p3[0] - p1[0] + p4[0] - p2[0], p3[1] - p1[1] + p4[1] - p2[1]];
     var area = Mathabs(d1[0] * d2[1] - d1[1] * d2[0]);
 
-   
-    if ((u1 === 0 && u4 === 1) || ((.25 + r * 5) * area > (patchSize * patchSize))) {      
+
+    if ((u1 === 0 && u4 === 1) || ((.25 + r * 5) * area > (patchSize * patchSize))) {
       var umid = (u1 + u4) / 2,
           vmid = (v1 + v4) / 2,
           pmid = transform.transformProjectiveVector([umid, vmid, 1]),
@@ -1484,76 +1498,76 @@ function divide(u1, v1, u4, v4, p1, p2, p3, p4, transform, limit, patchSize, ctx
           pb = transform.transformProjectiveVector([umid, v4, 1]),
           pl = transform.transformProjectiveVector([u1, vmid, 1]),
           pr = transform.transformProjectiveVector([u4, vmid, 1]);
-      
+
       --limit;
       divide(u1, v1, umid, vmid, p1, pt, pl, pmid, transform, limit, patchSize, ctx, img);
       divide(umid, v1, u4, vmid, pt, p2, pmid, pr, transform, limit, patchSize, ctx, img);
       divide(u1, vmid, umid, v4, pl, pmid, p3, pb, transform, limit, patchSize, ctx, img);
       divide(umid, vmid, u4, v4, pmid, pr, pb, p4, transform, limit, patchSize, ctx, img);
-    
+
       return;
     }
   }
-  
+
   ctx.save();
-  
+
   ctx.beginPath();
   ctx.moveTo(p1[0], p1[1]);
   ctx.lineTo(p2[0], p2[1]);
   ctx.lineTo(p4[0], p4[1]);
   ctx.lineTo(p3[0], p3[1]);
-  ctx.closePath();  
-  
- 
+  ctx.closePath();
+
+
   var d12 = [p2[0] - p1[0], p2[1] - p1[1]],
       d24 = [p4[0] - p2[0], p4[1] - p2[1]],
       d43 = [p3[0] - p4[0], p3[1] - p4[1]],
       d31 = [p1[0] - p3[0], p1[1] - p3[1]];
-  
+
    var a1 = Mathabs(d12[0] * d31[1] - d12[1] * d31[0]),
        a2 = Mathabs(d24[0] * d12[1] - d24[1] * d12[0]),
        a4 = Mathabs(d43[0] * d24[1] - d43[1] * d24[0]),
        a3 = Mathabs(d31[0] * d43[1] - d31[1] * d43[0]),
        amax = Mathmax(Mathmax(a1, a2), Mathmax(a3, a4)),
-       dx = 0, dy = 0, padx = 0, pady = 0;  
-  
+       dx = 0, dy = 0, padx = 0, pady = 0;
+
   switch (amax) {
     case a1:
-      ctx.transform(d12[0], d12[1], -d31[0], -d31[1], p1[0], p1[1]);      
+      ctx.transform(d12[0], d12[1], -d31[0], -d31[1], p1[0], p1[1]);
       if (u4 !== 1) padx = 1.05 / Mathsqrt(d12[0] * d12[0] + d12[1] * d12[1]);
       if (v4 !== 1) pady = 1.05 / Mathsqrt(d31[0] * d31[0] + d31[1] * d31[1]);
       break;
     case a2:
-      ctx.transform(d12[0], d12[1],  d24[0],  d24[1], p2[0], p2[1]);      
+      ctx.transform(d12[0], d12[1],  d24[0],  d24[1], p2[0], p2[1]);
       if (u4 !== 1) padx = 1.05 / Mathsqrt(d12[0] * d12[0] + d12[1] * d12[1]);
       if (v4 !== 1) pady = 1.05 / Mathsqrt(d24[0] * d24[0] + d24[1] * d24[1]);
       dx = -1;
       break;
     case a4:
-      ctx.transform(-d43[0], -d43[1], d24[0], d24[1], p4[0], p4[1]);     
+      ctx.transform(-d43[0], -d43[1], d24[0], d24[1], p4[0], p4[1]);
       if (u4 !== 1) padx = 1.05 / Mathsqrt(d43[0] * d43[0] + d43[1] * d43[1]);
       if (v4 !== 1) pady = 1.05 / Mathsqrt(d24[0] * d24[0] + d24[1] * d24[1]);
       dx = -1;
       dy = -1;
       break;
-    case a3:      
+    case a3:
       ctx.transform(-d43[0], -d43[1], -d31[0], -d31[1], p3[0], p3[1]);
       if (u4 !== 1) padx = 1.05 / Mathsqrt(d43[0] * d43[0] + d43[1] * d43[1]);
       if (v4 !== 1) pady = 1.05 / Mathsqrt(d31[0] * d31[0] + d31[1] * d31[1]);
       dy = -1;
       break;
   }
-  
-  
+
+
   var du = (u4 - u1),
       dv = (v4 - v1),
       padu = padx * du,
       padv = pady * dv;
-  
-   
+
+
   var iw = img.width,
-	  ih = img.height; 
-  
+	  ih = img.height;
+
   ctx.drawImage(
     img,
     u1 * iw,
@@ -1572,7 +1586,7 @@ function divide(u1, v1, u4, v4, p1, p2, p3, p4, transform, limit, patchSize, ctx
  */
 function getProjectiveTransform(points) {
   var eqMatrix = new Matrix(9, 8, [
-    [ 1, 1, 1,   0, 0, 0, -points[3].x,-points[3].x,-points[3].x ], 
+    [ 1, 1, 1,   0, 0, 0, -points[3].x,-points[3].x,-points[3].x ],
     [ 0, 1, 1,   0, 0, 0,  0,-points[2].x,-points[2].x ],
     [ 1, 0, 1,   0, 0, 0, -points[1].x, 0,-points[1].x ],
     [ 0, 0, 1,   0, 0, 0,  0, 0,-points[0].x ],
@@ -1583,7 +1597,7 @@ function getProjectiveTransform(points) {
     [ 0, 0, 0,   0, 0,-1,  0, 0, points[0].y ]
 
   ]);
-  
+
   var kernel = eqMatrix.rowEchelon().values;
   var transform = new Matrix(3, 3, [
     [-kernel[0][8], -kernel[1][8], -kernel[2][8]],
@@ -1595,18 +1609,18 @@ function getProjectiveTransform(points) {
 
 
 
-/* 
+/*
  * Generic matrix class.
  * (c) Steven Wittens 2008
  * http://www.acko.net/
  */
- 
+
 /*
- * Modified by Nilok Bose, (c) 2011  
+ * Modified by Nilok Bose, (c) 2011
  * http://codecanyon.net/user/cosmocoder
  */
 
- 
+
 var Matrix = function (w, h, values) {
   this.w = w;
   this.h = h;
@@ -1617,22 +1631,22 @@ Matrix.allocate = function (w, h) {
   var values = [],
 	  i = h,
 	  j = w;
-	  
+
   while(i--) {
     values[i] = [];
     while(j--) {
       values[i][j] = 0;
     }
-  } 
-  return values; 
+  }
+  return values;
 }
 
 Matrix.cloneValues = function (values) {
   clone = [];
   for (var i = 0, len = values.length; i < len; ++i) {
     clone[i] = [].concat(values[i]);
-  } 
-  return clone; 
+  }
+  return clone;
 }
 
 Matrix.prototype.transformProjectiveVector = function (operand) {
@@ -1655,7 +1669,7 @@ Matrix.prototype.rowEchelon = function () {
   if (this.w <= this.h) {
     throw "Matrix rowEchelon size mismatch";
   }
-  
+
   var temp = Matrix.cloneValues(this.values);
 
   // Do Gauss-Jordan algorithm.
@@ -1678,7 +1692,7 @@ Matrix.prototype.rowEchelon = function () {
         return new Matrix(this.w, this.h, temp);
       }
       else {
-        pivot = temp[yp][yp];        
+        pivot = temp[yp][yp];
       }
     };
     // Normalize this row.
@@ -1695,7 +1709,7 @@ Matrix.prototype.rowEchelon = function () {
         temp[y][x] -= factor * temp[yp][x];
       }
     }
-  }  
+  }
 
   return new Matrix(this.w, this.h, temp);
 }
