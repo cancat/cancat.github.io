@@ -1,34 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>timeline upload</title>
-  <link rel="stylesheet" href="main.css">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>新建 - 文学史资料库</title>
+  <meta name="theme-color" content="#fff">
   <link rel="import" href="http://polygit.org/components/polymer/polymer.html">
-  <link rel="import" href="elements.html">
+  <link rel="import" href="my-app.html" async>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', 'Noto', sans-serif;
+      font-size: 13px;
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+
+    my-app[unresolved] {
+      display: block;
+      line-height: 68px;
+      text-align: center;
+      font-size: 16px;
+      font-weight: 600;
+      color: #202020;
+      padding: 0 16px;
+      overflow: visible;
+    }
+  </style>
 </head>
 <body>
-<p><label>人物名称：</label><input type="text" id="name" required></p>
-<p><label>人物介绍：</label><textarea id="profile" rows="10" cols="50" required></textarea></p>
-<p><label>生卒年份：</label><input type="text" placeholder="453" required id="start_date"> - <input type="text" placeholder="501" id="end_date"></p>
-<p>
-  <label>上传资源：</label>
-  <input type="file" id="input" onchange="upload()"><span id="progress"></span><br>
-  <ul class="preview"></ul>
-</p>
-<p><button type="button" onclick="submit()">提交</button></p>
-<script src="firebase.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyAITcs3QtDzhSAArynbVr0WZ9cFS86X3oM",
-    authDomain: "timeline-b2597.firebaseapp.com",
-    databaseURL: "https://timeline-b2597.firebaseio.com",
-    storageBucket: "timeline-b2597.appspot.com",
-  };
-  firebase.initializeApp(config);
-</script>
-<script src="main.js"></script>
+  <my-app unresolved>文学史资料库管理</my-app>
+  <script>
+    (function() {
+      if ('registerElement' in document
+          && 'import' in document.createElement('link')
+          && 'content' in document.createElement('template')) {
+        // platform is good!
+      } else {
+        // polyfill the platform!
+        var e = document.createElement('script');
+        e.src = 'webcomponents-lite.min.js';
+        document.body.appendChild(e);
+      }
+    })();
+  </script>
 </body>
 </html>

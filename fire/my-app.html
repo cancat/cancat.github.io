@@ -1,0 +1,374 @@
+<link rel="import" href="http://polygit.org/components/polymer/polymer.html">
+<link rel="import" href="http://polygit.org/components/iron-pages/iron-pages.html">
+<link rel="import" href="http://polygit.org/components/paper-dialog/paper-dialog.html">
+<link rel="import" href="http://polygit.org/components/paper-button/paper-button.html">
+<link rel="import" href="audio-playback.html">
+<link rel="import" href="video-playback.html">
+<link rel="import" href="shop-input.html">
+<link rel="import" href="shop-textarea.html">
+<link rel="import" href="fire-upload.html">
+<link rel="import" href="message-modal.html">
+
+<script src="firebase.js"></script>
+
+<dom-module id="my-app">
+  <template>
+    <style include="shop-input shop-button">
+
+      :host {
+        display: block;
+        --app-primary-color: #202020;
+        --app-secondary-color: #757575;
+        --app-accent-color: #172C50;
+        --paper-progress-container-color: #c5cad3;
+        --paper-progress-active-color: #000;
+        --paper-button-ink-color: var(--app-accent-color);
+        --paper-icon-button-ink-color: var(--app-accent-color);
+        --paper-spinner-color: var(--app-accent-color);
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        color: var(--app-primary-color);
+        min-height: 100vh;
+      }
+
+      main {
+        padding-bottom: 64px;
+      }
+
+      .logo {
+        text-align: center;
+        margin-bottom: 22px;
+      }
+
+      .logo a {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--app-primary-color);
+        text-decoration: none;
+        /* required for IE 11, so this <a> can receive pointer events */
+        display: inline-block;
+        pointer-events: auto;
+      }
+
+      .main-frame {
+        margin: 0 auto;
+        padding: 0 24px 48px 24px;
+        max-width: 900px;
+        overflow: hidden;
+      }
+
+      h2 {
+        font-size: 13px;
+      }
+
+      label {
+        vertical-align: top;
+      }
+
+      shop-input, shop-select, shop-textarea {
+        font-size: 16px;
+      }
+
+      [hidden] {
+        display: none !important;
+      }
+
+      header {
+        padding-top: 22px;
+        text-align: center;
+      }
+
+      header > h1 {
+        margin: 0 0 4px 0;
+        font-size: 1.1em;
+        font-weight: 500;
+      }
+
+      header > span {
+        color: var(--app-secondary-color);
+        font-size: 12px;
+      }
+
+      .grid {
+        margin-top: 40px;
+        @apply(--layout-horizontal);
+      }
+
+      .grid > section {
+        @apply(--layout-flex);
+      }
+
+      .grid > section:not(:first-child) {
+        margin-left: 80px;
+      }
+
+      .row {
+        @apply(--layout-horizontal);
+        @apply(--layout-end);
+      }
+
+      .column {
+        @apply(--layout-vertical);
+      }
+
+      .row > .flex,
+      .input-row > * {
+        @apply(--layout-flex);
+      }
+
+      .input-row > *:not(:first-child) {
+        margin-left: 8px;
+      }
+
+      .submitContainer {
+        @apply(--layout-horizontal);
+        @apply(--layout-center-center);
+      }
+
+      message-modal {
+        z-index: 2;
+      }
+
+      paper-button.fancy {
+        color: var(--app-accent-color);
+      }
+
+      @media (max-width: 767px) {
+
+        .grid {
+          display: block;
+          margin-top: 0;
+        }
+
+        .grid > section:not(:first-child) {
+          margin-left: 0;
+        }
+
+      }
+
+      #mask {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        background-color: hsla(0,0%,98%,.98);
+        z-index: 1;
+        @apply(--layout-vertical);
+        @apply(--layout-center-center);
+      }
+
+      #mask h2 {
+        font-size: 20px;
+      }
+
+      #mask > shop-input {
+        min-width: 250px;
+      }
+
+      #mask > shop-input > input {
+        background-color: transparent;
+      }
+
+    </style>
+    <main id="mainView" hidden$="[[!auth]]">
+      <header class="subsection">
+        <div class="logo" title><a href="/fire/" aria-label="文学史资料库">文学史资料库管理</a></div>
+        <h1>新建人物</h1>
+        <span>添加新的历史人物、简介、资源等</span>
+      </header>
+      <form is="iron-form" id="checkoutForm" class="main-frame grid">
+        <section>
+          <h2>人物信息</h2>
+          <div class="row input-row">
+            <shop-input>
+              <input type="text" id="userName" name="userName"
+                  placeholder="人物名称" autofocus required
+                  aria-labelledby="userNameLabel" value="{{savedData.name::input}}">
+              <shop-md-decorator error-message="格式有误" aria-hidden="true">
+                <label id="userNameLabel">人物名称</label>
+                <shop-underline></shop-underline>
+              </shop-md-decorator>
+            </shop-input>
+          </div>
+          <div class="row input-row">
+            <shop-textarea id="userProfile" name="userProfile" placeholder="人物简介" value="{{savedData.profile::input}}" required></shop-textarea>
+          </div>
+          <div class="row input-row">
+            <shop-input>
+              <input type="text" id="startDate" name="startDate"
+                  placeholder="开始年份" pattern="\d{0,4}" required
+                  aria-labelledby="startDateLabel" value="{{savedData.start_date::input}}">
+              <shop-md-decorator error-message="格式有误" aria-hidden="true">
+                <label id="userNameLabel">开始年份</label>
+                <shop-underline></shop-underline>
+              </shop-md-decorator>
+            </shop-input>
+            <shop-input>
+              <input type="text" id="endDate" name="endDate"
+                  placeholder="结束年份" pattern="\d{0,4}" required
+                  aria-labelledby="endDateLabel" value="{{savedData.end_date::input}}">
+              <shop-md-decorator error-message="格式有误" aria-hidden="true">
+                <label id="userNameLabel">结束年份</label>
+                <shop-underline></shop-underline>
+              </shop-md-decorator>
+            </shop-input>
+          </div>
+        </section>
+        <section>
+          <h2>上传附件</h2>
+          <div class="row input-row">
+            <fire-upload files="{{savedData.files}}"></fire-upload>
+          </div>
+        </section>
+      </form>
+      <div class="submitContainer">
+        <shop-button responsive id="submitBox">
+          <input type="button" on-click="submit" value="提交">
+        </shop-button>
+      </div>
+      <message-modal id="messageModal"></message-modal>
+      <paper-dialog id="modal" modal auto-fit-on-attach>
+        <div>
+          <p>不支持该文件格式，合法格式包括</p>
+          <ul>
+            <li>image/jpg</li>
+            <li>image/jpeg</li>
+            <li>image/png</li>
+            <li>audio/mp3</li>
+            <li>audio/ogg</li>
+            <li>video/mp4</li>
+            <li>video/webm</li>
+            <li>video/ogv</li>
+          </ul>
+        </div>
+        <div class="buttons">
+          <paper-button class="fancy" dialog-confirm autofocus>关闭</paper-button>
+        </div>
+      </paper-dialog>
+    </main>
+    <div id="mask" hidden$="[[auth]]">
+      <h2>用户登录</h2>
+      <shop-input>
+        <input type="email" id="userMail" name="userMail"
+            placeholder="邮箱地址" autofocus required
+            aria-labelledby="userMailLabel">
+        <shop-md-decorator error-message="格式有误" aria-hidden="true">
+          <label id="userMailLabel">邮箱地址</label>
+          <shop-underline></shop-underline>
+        </shop-md-decorator>
+      </shop-input>
+      <shop-input>
+        <input type="password" id="userPass" name="userPass"
+            placeholder="密码" required
+            aria-labelledby="userPassLabel">
+        <shop-md-decorator error-message="格式有误" aria-hidden="true">
+          <label id="userPassLabel">密码</label>
+          <shop-underline></shop-underline>
+        </shop-md-decorator>
+      </shop-input>
+      <shop-button>
+        <input type="button" on-click="login" value="提交">
+      </shop-button>
+    </div>
+  </template>
+  <script>
+    var config = {
+      apiKey: "AIzaSyAITcs3QtDzhSAArynbVr0WZ9cFS86X3oM",
+      authDomain: "timeline-b2597.firebaseapp.com",
+      databaseURL: "https://timeline-b2597.firebaseio.com",
+      storageBucket: "timeline-b2597.appspot.com",
+    };
+
+    firebase.initializeApp(config);
+
+    Polymer({
+      is: 'my-app',
+      properties: {
+        auth: {
+          type: Boolean,
+          value: true
+        },
+        savedData: {
+          type: Object,
+          value: function() {
+            return {
+              name: '',
+              profile: '',
+              start_date: '',
+              end_date: '',
+              files: []
+            }
+          }
+        }
+      },
+      listeners: {
+        'unsupported-type': '_onUnsupportedType'
+      },
+      created: function() {
+        window.performance && performance.mark && performance.mark('shop-app.created');
+        // Custom elements polyfill safe way to indicate an element has been upgraded.
+        this.removeAttribute('unresolved');
+        var self = this;
+        firebase.auth().onAuthStateChanged(function(user) {
+          if (user) {
+            // User is signed in.
+            self.auth = true;
+          } else {
+            // No user is signed in.
+            self.auth = false;
+          }
+        });
+      },
+      submit: function() {
+        var self = this;
+        if (this._validateForm()) {
+          firebase.database().ref().push(self.savedData).then(function() {
+            self.$.messageModal.open();
+          });
+        }
+      },
+      login: function() {
+        var email = this.$.userMail.value;
+        var password = this.$.userPass.value;
+        var self = this;
+        firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          alert(error.code + ': ' + error.message);
+        });
+      },
+      _validateForm: function() {
+        var form = this.$.checkoutForm;
+        var firstInvalid = false;
+
+        for (var el, i = 0; el = form.elements[i], i < form.elements.length; i++) {
+          if (el.checkValidity()) {
+            el.removeAttribute('aria-invalid');
+          } else {
+            if (!firstInvalid) {
+              // announce error message
+              if (el.nextElementSibling) {
+                this.fire('announce', el.nextElementSibling.getAttribute('error-message'));
+              }
+              if (el.scrollIntoViewIfNeeded) {
+                // safari, chrome
+                el.scrollIntoViewIfNeeded();
+              } else {
+                // firefox, edge, ie
+                el.scrollIntoView(false);
+              }
+              el.focus();
+              firstInvalid = true;
+            }
+            el.setAttribute('aria-invalid', 'true');
+          }
+        }
+        return !firstInvalid;
+      },
+      _onUnsupportedType: function() {
+        this.$.modal.open();
+      }
+    });
+  </script>
+</dom-module>
