@@ -3,17 +3,23 @@
 	<meta lang="zh-CN">
 	<meta charset="utf-8">
 	<title>文件读取测试</title>
+  <style>
+    p.test::before {
+      content: attr(data-initials)
+    }
+  </style>
 </head>
 <body>
 	<input type="file" id="input" onchange="fileSelected(this.files)">
 	<main></main>
+  <p class="test" data-initials>测试attr</p>
 </body>
 <script>
-	if(window.FileReader) {  
+	if(window.FileReader) {
 		var main = document.querySelector('main'); // 获取DOM对象用于显示checkbox
 
     	var fr = new FileReader();                 // 初始化FileReader实例
-	    // add your code here  
+	    // add your code here
 	    fr.onload = function () {
 	    	var result = eval(this.result);        // 获得文件中的json串并保存至变量result
 	    	printCheckBox(eval(this.result));      // 根据json数据打印checkbox
@@ -34,8 +40,8 @@
 	    	}
 	    	main.innerHTML = html.join(''); // 插入checkbox代码片段
 	    }
-	} else {  
-	    alert("Not supported by your browser!");  
-	}  
+	} else {
+	    alert("Not supported by your browser!");
+	}
 </script>
 </html>
